@@ -7,7 +7,7 @@ import org.springframework.context.annotation.ComponentScan
 
 @SpringBootApplication
 @EnableAutoConfiguration
-@ComponentScan
+@ComponentScan("com.alexaichinger.nutri_tracking")
 class NutriTrackingApplication
 
 fun main(args: Array<String>) {

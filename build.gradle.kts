@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.ir.linkage.partial.PartialLinkageUtils.File.MissingDeclarations.module
+
 plugins {
 	id("org.springframework.boot") version "3.3.1"
 	id("io.spring.dependency-management") version "1.1.5"
@@ -21,6 +23,12 @@ repositories {
 
 extra["springAiVersion"] = "1.0.0-M1"
 
+configurations.all {
+	exclude("org.springframework.boot", "spring-boot-starter-logging")
+	exclude("ch.qos.logback", "logback-classic")
+	exclude("org.apache.logging.log4j", "log4j-to-slf4j")
+}
+
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
 	implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
@@ -35,6 +43,8 @@ dependencies {
 	testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
 	testImplementation("org.springframework.security:spring-security-test")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+
+	implementation("org.springframework.boot:spring-boot-starter-log4j2")
 }
 
 dependencyManagement {

@@ -7,11 +7,7 @@ spring:
       password: password
   data:
     mongodb:
-      host: localhost
-      port: '27017'
-      database: tracking
-      username: alex
-      password: '1234'
+      uri: mongodb://alex:1234@localhost:27017/tracking?authSource=admin
 server:
   port: '8081'
 
