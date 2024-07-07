@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: nutri-tracking
+  security:
+    user:
+      name: admin
+      password: password
+  data:
+    mongodb:
+      host: localhost
+      port: '27017'
+      database: tracking
+      username: alex
+      password: '1234'
+server:
+  port: '8081'
+
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG
