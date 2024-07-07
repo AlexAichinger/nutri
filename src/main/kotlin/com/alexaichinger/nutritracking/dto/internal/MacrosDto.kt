@@ -1,10 +1,9 @@
-package com.alexaichinger.nutri_tracking.model
+package com.alexaichinger.nutritracking.dto.internal
 
 import java.math.BigDecimal
 
-data class NutritionInformation(
+data class MacrosDto(
     var calories: BigDecimal,
-    var servingSize: BigDecimal? = null,
     var protein: BigDecimal? = null,
     var fat: BigDecimal? = null,
     var carbs: BigDecimal? = null,

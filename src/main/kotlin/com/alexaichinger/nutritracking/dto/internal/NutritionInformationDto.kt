@@ -1,6 +1,6 @@
-package com.alexaichinger.nutri_tracking.dto
+package com.alexaichinger.nutritracking.dto.internal
 
-import com.alexaichinger.nutri_tracking.model.NutritionInformation
+import com.alexaichinger.nutritracking.model.NutritionInformation
 import java.math.BigDecimal
 
 data class NutritionInformationDto(

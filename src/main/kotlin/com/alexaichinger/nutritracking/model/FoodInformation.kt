@@ -1,4 +1,4 @@
-package com.alexaichinger.nutri_tracking.model
+package com.alexaichinger.nutritracking.model
 
 data class FoodInformation(
     var name: String,

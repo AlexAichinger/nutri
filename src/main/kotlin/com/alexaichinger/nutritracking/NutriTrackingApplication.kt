@@ -1,4 +1,4 @@
-package com.alexaichinger.nutri_tracking
+package com.alexaichinger.nutritracking
 
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration
 import org.springframework.boot.autoconfigure.SpringBootApplication
@@ -7,9 +7,9 @@ import org.springframework.context.annotation.ComponentScan
 
 @SpringBootApplication
 @EnableAutoConfiguration
-@ComponentScan("com.alexaichinger.nutri_tracking")
+@ComponentScan("com.alexaichinger.nutritracking")
 class NutriTrackingApplication
 
 fun main(args: Array<String>) {
-	runApplication<NutriTrackingApplication>(*args)
+    runApplication<NutriTrackingApplication>(*args)
 }

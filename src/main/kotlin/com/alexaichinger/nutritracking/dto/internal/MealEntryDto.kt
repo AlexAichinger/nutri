@@ -1,7 +1,7 @@
-package com.alexaichinger.nutri_tracking.dto
+package com.alexaichinger.nutritracking.dto.internal
 
-import com.alexaichinger.nutri_tracking.model.MealEntry
-import com.alexaichinger.nutri_tracking.model.MealTime
+import com.alexaichinger.nutritracking.model.MealEntry
+import com.alexaichinger.nutritracking.model.MealTime
 import com.fasterxml.jackson.annotation.JsonFormat
 import java.time.LocalDate
 
@@ -18,6 +18,6 @@ fun MealEntryDto.toEntity(): MealEntry {
         user = user,
         mealTime = mealTime,
         loggingDate = loggingDate,
-        foodInformation = foodInformation.toEntity()
+        foodInformation = foodInformation.toEntity(),
     )
 }

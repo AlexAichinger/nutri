@@ -1,17 +1,20 @@
-package com.alexaichinger.nutri_tracking.service
+package com.alexaichinger.nutritracking.service
 
-import com.alexaichinger.nutri_tracking.dto.MacrosDto
-import com.alexaichinger.nutri_tracking.model.MealEntry
-import com.alexaichinger.nutri_tracking.repository.MealEntryRepository
+import com.alexaichinger.nutritracking.dto.internal.MacrosDto
+import com.alexaichinger.nutritracking.model.MealEntry
+import com.alexaichinger.nutritracking.repository.MealEntryRepository
 import org.springframework.stereotype.Service
 import java.math.BigDecimal
 import java.time.LocalDate
 
 @Service
 class MacrosService(
-    private val repository: MealEntryRepository
+    private val repository: MealEntryRepository,
 ) {
-    fun getUserMacros(user: String, day: LocalDate): MacrosDto {
+    fun getUserMacros(
+        user: String,
+        day: LocalDate,
+    ): MacrosDto {
         val entries = repository.findByUserAndLoggingDate(user, day)
 
         return getMacros(entries)
@@ -63,8 +66,10 @@ class MacrosService(
         )
     }
 
-    fun plus(num: BigDecimal, number: BigDecimal?): BigDecimal {
+    fun plus(
+        num: BigDecimal,
+        number: BigDecimal?,
+    ): BigDecimal {
         return if (number == null) num else num.plus(number)
     }
 }
-

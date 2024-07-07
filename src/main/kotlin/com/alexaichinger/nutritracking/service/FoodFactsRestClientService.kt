@@ -1,0 +1,26 @@
+package com.alexaichinger.nutritracking.service
+
+import com.alexaichinger.nutritracking.configuration.OpenFoodFactsConfig
+import org.springframework.boot.context.properties.EnableConfigurationProperties
+import org.springframework.boot.info.BuildProperties
+import org.springframework.context.annotation.Bean
+import org.springframework.http.HttpHeaders
+import org.springframework.stereotype.Service
+import org.springframework.web.client.RestClient
+
+@Service
+@EnableConfigurationProperties(OpenFoodFactsConfig::class)
+class FoodFactsRestClientService(
+    private val openFoodFactsConfig: OpenFoodFactsConfig,
+    private val buildProperties: BuildProperties,
+) {
+    @Bean
+    fun getRestClient(): RestClient {
+        return RestClient.builder()
+            .baseUrl(openFoodFactsConfig.baseUrl)
+            .defaultHeader(
+                HttpHeaders.USER_AGENT,
+                "Nutri Tracking - ${System.getProperty("os.name")} - ${buildProperties.version}",
+            ).build()
+    }
+}

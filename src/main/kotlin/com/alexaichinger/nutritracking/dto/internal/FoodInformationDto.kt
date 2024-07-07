@@ -1,6 +1,6 @@
-package com.alexaichinger.nutri_tracking.dto
+package com.alexaichinger.nutritracking.dto.internal
 
-import com.alexaichinger.nutri_tracking.model.FoodInformation
+import com.alexaichinger.nutritracking.model.FoodInformation
 
 data class FoodInformationDto(
     var name: String,
@@ -12,6 +12,6 @@ fun FoodInformationDto.toEntity(): FoodInformation {
     return FoodInformation(
         name = name,
         barcode = barcode,
-        nutritionInformation = nutritionInformation.toEntity()
+        nutritionInformation = nutritionInformation.toEntity(),
     )
 }

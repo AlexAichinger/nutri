@@ -1,0 +1,4 @@
+openFoodFacts:
+  baseUrl: https://uk.openfoodfacts.org/api/v0/
+
+
