@@ -1,4 +1,5 @@
+# https://openfoodfacts.github.io/openfoodfacts-server/api/ref-v2/#cmp--schemas-product-nutrition
 openFoodFacts:
-  baseUrl: https://uk.openfoodfacts.org/api/v0/
+  baseUrl: https://world.openfoodfacts.net/
 
 
