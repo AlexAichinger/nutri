@@ -9,11 +9,12 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/product")
 class ProductInformation(
-    private val foodFactsService: OpenFoodFactsService
+    private val foodFactsService: OpenFoodFactsService,
 ) {
     @GetMapping("/{barcode}")
-    fun getProduct(@PathVariable barcode: String): String? {
+    fun getProduct(
+        @PathVariable barcode: String,
+    ): String? {
         return foodFactsService.getProductInfo(barcode)
     }
-
 }

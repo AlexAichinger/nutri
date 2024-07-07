@@ -14,9 +14,10 @@ class OpenFoodFactsService(
 
     fun getProductInfo(barcode: String): String? {
         val uri = "/api/v2/product/$barcode.json"
-        val body = client.get()
-            .uri(uri)
-            .accept(MediaType.APPLICATION_JSON)
+        val body =
+            client.get()
+                .uri(uri)
+                .accept(MediaType.APPLICATION_JSON)
 
         log.info(body.retrieve().body(String::class.java))
         return body.retrieve().body(String::class.java)
