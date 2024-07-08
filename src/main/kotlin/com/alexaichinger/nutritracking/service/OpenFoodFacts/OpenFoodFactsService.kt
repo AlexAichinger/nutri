@@ -1,4 +1,4 @@
-package com.alexaichinger.nutritracking.service
+package com.alexaichinger.nutritracking.service.OpenFoodFacts
 
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -13,7 +13,7 @@ class OpenFoodFactsService(
     private val client = restClient.getRestClient()
 
     fun getProductInfo(barcode: String): String? {
-        val uri = "/api/v2/product/$barcode.json"
+        val uri = "/api/v1/product/$barcode.json"
         val body =
             client.get()
                 .uri(uri)

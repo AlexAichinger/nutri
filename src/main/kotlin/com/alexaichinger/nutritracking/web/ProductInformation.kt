@@ -1,6 +1,6 @@
 package com.alexaichinger.nutritracking.web
 
-import com.alexaichinger.nutritracking.service.OpenFoodFactsService
+import com.alexaichinger.nutritracking.service.OpenFoodFacts.OpenFoodFactsService
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping

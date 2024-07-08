@@ -1,4 +1,4 @@
-package com.alexaichinger.nutritracking.service
+package com.alexaichinger.nutritracking.service.OpenFoodFacts
 
 import com.alexaichinger.nutritracking.configuration.OpenFoodFactsConfig
 import org.springframework.boot.context.properties.EnableConfigurationProperties
