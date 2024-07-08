@@ -3,16 +3,18 @@ package com.alexaichinger.nutritracking
 import com.alexaichinger.nutritracking.dto.external.openfoodfacts.v3.OffV3Dto
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
+import org.junit.jupiter.api.Assertions
 import kotlin.test.Test
 
 class TestMapping {
     @Test
     fun test() {
-        var mapper = jacksonObjectMapper()
-        val maped = mapper.readValue<OffV3Dto>(body)
+        val mapper = jacksonObjectMapper()
+        val mappedBody = mapper.readValue<OffV3Dto>(sampleResponseBody)
+        Assertions.assertNotNull(mappedBody)
     }
 
-    val body = """
+    val sampleResponseBody = """
 {
   "code": "3045320094008",
   "errors": [],
