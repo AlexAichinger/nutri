@@ -1,25 +1,36 @@
 package com.alexaichinger.nutritracking.service.OpenFoodFacts
 
+import com.alexaichinger.nutritracking.dto.external.client.ProductInfo
+import com.alexaichinger.nutritracking.dto.external.client.toClientDto
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
-import org.springframework.http.MediaType
 import org.springframework.stereotype.Service
+import org.springframework.web.client.HttpClientErrorException
 
 @Service
 class OpenFoodFactsService(
-    private val restClient: FoodFactsRestClientService,
+    private val openFoodFactsClient: FoodFactsRestClientService,
 ) {
     private val log: Logger = LoggerFactory.getLogger(javaClass)
-    private val client = restClient.getRestClient()
 
-    fun getProductInfo(barcode: String): String? {
-        val uri = "/api/v1/product/$barcode.json"
-        val body =
-            client.get()
-                .uri(uri)
-                .accept(MediaType.APPLICATION_JSON)
+    fun getProductInfo(barcode: String): ProductInfo? {
+        return try {
+            val productResponse = openFoodFactsClient.getProduct(barcode)
+            return productResponse?.toClientDto()
+        } catch(e: HttpClientErrorException) {
+            when {
+                e.statusCode.is4xxClientError -> handle4xxError(barcode, e)
+                e.statusCode.is5xxServerError -> handle5xxError(barcode, e)
+            }
+            null
+        }
+    }
 
-        log.info(body.retrieve().body(String::class.java))
-        return body.retrieve().body(String::class.java)
+    private fun handle5xxError(barcode: String, e: HttpClientErrorException) {
+        log.error("Error occurred during call for $barcode.", e)
+    }
+
+    private fun handle4xxError(barcode: String, e: HttpClientErrorException) {
+        log.debug("Call made for product with barcode: $barcode was not found.")
     }
 }

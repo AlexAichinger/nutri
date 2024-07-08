@@ -16,7 +16,7 @@ import java.time.LocalDate
 
 @RestController
 @RequestMapping("/{user}/meals")
-class Meals(
+class MealsController(
     private val mealService: MealEntryService,
 ) {
     private val log: Logger = LoggerFactory.getLogger(javaClass)

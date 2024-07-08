@@ -11,7 +11,7 @@ import java.time.LocalDate
 
 @RestController
 @RequestMapping("/{user}/macros")
-class Macronutrients(
+class MacronutrientsController(
     private val macrosService: MacrosService,
 ) {
     @GetMapping(

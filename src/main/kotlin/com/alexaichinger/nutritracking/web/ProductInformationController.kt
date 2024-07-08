@@ -1,6 +1,8 @@
 package com.alexaichinger.nutritracking.web
 
+import com.alexaichinger.nutritracking.dto.external.client.ProductInfo
 import com.alexaichinger.nutritracking.service.OpenFoodFacts.OpenFoodFactsService
+import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
@@ -8,13 +10,16 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/product")
-class ProductInformation(
+class ProductInformationController(
     private val foodFactsService: OpenFoodFactsService,
 ) {
-    @GetMapping("/{barcode}")
+    @GetMapping(
+        "/{barcode}",
+        produces = [MediaType.APPLICATION_JSON_VALUE],
+    )
     fun getProduct(
         @PathVariable barcode: String,
-    ): String? {
+    ): ProductInfo? {
         return foodFactsService.getProductInfo(barcode)
     }
 }
