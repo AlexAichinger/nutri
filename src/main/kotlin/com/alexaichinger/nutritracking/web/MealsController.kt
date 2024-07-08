@@ -5,7 +5,10 @@ import com.alexaichinger.nutritracking.model.MealEntry
 import com.alexaichinger.nutritracking.service.MealEntryService
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import org.springframework.format.annotation.DateTimeFormat
+import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
@@ -27,8 +30,13 @@ class MealsController(
     fun trackMeal(
         @PathVariable user: String,
         @RequestBody meal: MealEntryDto,
-    ) {
+    ): ResponseEntity<String> {
         mealService.logMeal(meal)
+        return if (!((meal.openFoodFactsProductTracking == null) xor (meal.manualFoodInformation == null))) {
+            return ResponseEntity("Verify your request, can't manually and automatically log meal.", HttpStatus.BAD_REQUEST)
+        } else {
+            ResponseEntity("Successfully logged meal.", HttpStatus.ACCEPTED)
+        }
     }
 
     @GetMapping(
@@ -37,7 +45,7 @@ class MealsController(
     )
     fun getMeals(
         @PathVariable user: String,
-        @PathVariable date: LocalDate,
+        @PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") date: LocalDate,
     ): List<MealEntry> {
         return mealService.getMealsTracked(user, date)
     }

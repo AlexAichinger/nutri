@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service
 import org.springframework.web.client.HttpClientErrorException
 
 @Service
-class OpenFoodFactsService(
+open class OpenFoodFactsService(
     private val openFoodFactsClient: FoodFactsRestClientService,
 ) {
     private val log: Logger = LoggerFactory.getLogger(javaClass)
@@ -37,6 +37,6 @@ class OpenFoodFactsService(
         barcode: String,
         e: HttpClientErrorException,
     ) {
-        log.debug("Call made for product with barcode: $barcode was not found.")
+        log.debug("Call made for product with barcode: $barcode was not found.", e)
     }
 }

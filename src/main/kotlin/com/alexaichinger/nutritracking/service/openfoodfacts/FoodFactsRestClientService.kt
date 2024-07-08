@@ -12,7 +12,7 @@ import org.springframework.web.client.RestClient
 
 @Service
 @EnableConfigurationProperties(OpenFoodFactsConfig::class)
-class FoodFactsRestClientService(
+open class FoodFactsRestClientService(
     private val openFoodFactsConfig: OpenFoodFactsConfig,
     private val buildProperties: BuildProperties,
 ) {

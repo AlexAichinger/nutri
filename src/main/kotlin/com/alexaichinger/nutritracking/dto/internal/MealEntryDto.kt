@@ -13,7 +13,13 @@ data class MealEntryDto(
     val mealTime: MealTime,
     @JsonFormat(pattern = "dd/MM/yyyy")
     val loggingDate: LocalDate,
-    val foodInformation: FoodInformationDto,
+    val manualFoodInformation: ManualFoodInformationDto?,
+    val openFoodFactsProductTracking: OpenFoodFactsProductTracking?,
+)
+
+data class OpenFoodFactsProductTracking(
+    val barcode: String,
+    val eatenInGrams: BigDecimal,
 )
 
 data class NutritionInformationDto(
@@ -32,7 +38,7 @@ data class NutritionInformationDto(
     var potassium: BigDecimal? = null,
 )
 
-data class FoodInformationDto(
+data class ManualFoodInformationDto(
     var name: String,
     var barcode: String,
     var nutritionInformation: NutritionInformationDto,
@@ -43,11 +49,11 @@ fun MealEntryDto.toEntity(): MealEntry {
         user = user,
         mealTime = mealTime,
         loggingDate = loggingDate,
-        foodInformation = foodInformation.toEntity(),
+        foodInformation = manualFoodInformation!!.toEntity(),
     )
 }
 
-fun FoodInformationDto.toEntity(): FoodInformation {
+fun ManualFoodInformationDto.toEntity(): FoodInformation {
     return FoodInformation(
         name = name,
         barcode = barcode,
