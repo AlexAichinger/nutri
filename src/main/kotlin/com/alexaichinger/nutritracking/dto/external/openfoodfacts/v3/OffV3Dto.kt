@@ -1,4 +1,4 @@
-package com.alexaichinger.nutritracking.dto.external.open.food.facts.v3
+package com.alexaichinger.nutritracking.dto.external.openfoodfacts.v3
 
 import com.fasterxml.jackson.annotation.JsonAlias
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
@@ -9,12 +9,12 @@ data class OffV3Dto(
     var errors: List<String>,
     var product: OffProductV3Dto,
     var result: OffResultV3Dto,
-    var status: String
+    var status: String,
 )
 
 data class OffResultV3Dto(
     var id: String,
     @JsonAlias("lc_name")
     var lcName: String,
-    var name: String
+    var name: String,
 )

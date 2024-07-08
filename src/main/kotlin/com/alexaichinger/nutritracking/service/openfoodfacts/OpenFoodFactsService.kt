@@ -1,4 +1,4 @@
-package com.alexaichinger.nutritracking.service.OpenFoodFacts
+package com.alexaichinger.nutritracking.service.openfoodfacts
 
 import com.alexaichinger.nutritracking.dto.external.client.ProductInfo
 import com.alexaichinger.nutritracking.dto.external.client.toClientDto
@@ -17,7 +17,7 @@ class OpenFoodFactsService(
         return try {
             val productResponse = openFoodFactsClient.getProduct(barcode)
             return productResponse?.toClientDto()
-        } catch(e: HttpClientErrorException) {
+        } catch (e: HttpClientErrorException) {
             when {
                 e.statusCode.is4xxClientError -> handle4xxError(barcode, e)
                 e.statusCode.is5xxServerError -> handle5xxError(barcode, e)
@@ -26,11 +26,17 @@ class OpenFoodFactsService(
         }
     }
 
-    private fun handle5xxError(barcode: String, e: HttpClientErrorException) {
+    private fun handle5xxError(
+        barcode: String,
+        e: HttpClientErrorException,
+    ) {
         log.error("Error occurred during call for $barcode.", e)
     }
 
-    private fun handle4xxError(barcode: String, e: HttpClientErrorException) {
+    private fun handle4xxError(
+        barcode: String,
+        e: HttpClientErrorException,
+    ) {
         log.debug("Call made for product with barcode: $barcode was not found.")
     }
 }

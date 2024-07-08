@@ -1,4 +1,4 @@
-package com.alexaichinger.nutritracking.dto.external.open.food.facts.v3
+package com.alexaichinger.nutritracking.dto.external.openfoodfacts.v3
 
 import com.fasterxml.jackson.annotation.JsonAlias
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
@@ -18,42 +18,42 @@ data class OffProductV3Dto(
     @JsonAlias("ecoscore_data")
     var ecoScoreData: OffEcoScoreDataV3Dto,
     @JsonAlias("ecoscore_grade")
-    var ecoScoreGrade: String, // a,b,c,e
+    var ecoScoreGrade: String,
     @JsonAlias("ecoscore_score")
-    var ecoScoreScore: Int, // 0..100
+    var ecoScoreScore: Int,
     @JsonAlias("food_groups")
-    var foodGroups: String, // en:sweets
+    var foodGroups: String,
     @JsonAlias("fruits-vegetables-nuts_100g_estimate")
     var fruitsVegetablesNuts100gEstimate: Int,
     @JsonAlias("generic_name")
     val genericName: String,
     var ingredients: List<OffIngredientsV3Dto>,
     @JsonAlias("ingredients_analysis_tags")
-    var ingredientsAnalysisTags: List<String>, // ["en:palm-oil-free","en:vegan"]
+    var ingredientsAnalysisTags: List<String>,
     @JsonAlias("ingredients_n")
     var ingredientsN: Int,
     @JsonAlias("ingredients_tags")
-    var ingredientsTags: List<String>, // [""en:strawberry"",""en:fruit""]
+    var ingredientsTags: List<String>,
     @JsonAlias("ingredients_text_en")
-    var ingredientsTextEn: String, // "strawberries, sugar, cane sugar, concentrated lemon juice"
-    var labels: String, // "no gluten"
+    var ingredientsTextEn: String,
+    var labels: String,
     @JsonAlias("manufacturing_places")
-    var manufacturingPlaces: String, // France
+    var manufacturingPlaces: String,
     @JsonAlias("nova_group")
-    var novaGroup: Int, // 4
+    var novaGroup: Int,
     @JsonAlias("nova_groups_tags")
-    var novaGroupsTags: List<String>, // ["en:4-ultra-processed-food-and-drink-products"]
+    var novaGroupsTags: List<String>,
     var nutriments: OffNutrimentsV3Dto,
     @JsonAlias("nutriments_estimated")
     var nutrimentsEstimated: OffNutrimentsEstimatedV3Dto,
     @JsonAlias("popularity_tags")
-    var popularityTags: List<String>, // Strawberry Jam
+    var popularityTags: List<String>,
     @JsonAlias("product_name")
-    var productName: String, // Strawberry Jam
+    var productName: String,
     @JsonAlias("product_name_en")
-    var productNameEn: String, // Strawberry Jam
+    var productNameEn: String,
     @JsonAlias("product_quantity")
-    var productQuantity: BigDecimal, // 370
+    var productQuantity: BigDecimal,
 )
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -134,7 +134,7 @@ data class OffNutrimentsV3Dto(
     @JsonAlias("carbohydrates_100g")
     var carbohydrates100g: BigDecimal,
     @JsonAlias("carbohydrates_unit")
-    var carbohydratesUnit: String, // g
+    var carbohydratesUnit: String,
     @JsonAlias("energy-kcal")
     var energyKcal: BigDecimal,
     @JsonAlias("energy-kcal_100g")
@@ -177,11 +177,11 @@ data class OffNutrimentsV3Dto(
 data class OffIngredientsV3Dto(
     @JsonAlias("ciqual_food_code")
     var ciqualFoodCode: String? = null,
-    var id: String, // en:strawberry
+    var id: String,
     @JsonAlias("percent_estimate")
-    var percentEstimate: Int, //0..100
-    var vegan: String? = null, // yes
-    var vegetarian: String? = null, // yes
+    var percentEstimate: Int,
+    var vegan: String? = null,
+    var vegetarian: String? = null,
     var ingredients: List<OffIngredientsV3Dto>? = listOf(),
-    var text: String, // "concentrated lemon juice"
+    var text: String,
 )

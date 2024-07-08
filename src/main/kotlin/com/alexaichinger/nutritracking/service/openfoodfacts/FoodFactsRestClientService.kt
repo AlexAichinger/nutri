@@ -1,7 +1,7 @@
-package com.alexaichinger.nutritracking.service.OpenFoodFacts
+package com.alexaichinger.nutritracking.service.openfoodfacts
 
 import com.alexaichinger.nutritracking.configuration.OpenFoodFactsConfig
-import com.alexaichinger.nutritracking.dto.external.open.food.facts.v3.OffV3Dto
+import com.alexaichinger.nutritracking.dto.external.openfoodfacts.v3.OffV3Dto
 import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.boot.info.BuildProperties
 import org.springframework.context.annotation.Bean
@@ -26,7 +26,7 @@ class FoodFactsRestClientService(
             ).build()
     }
 
-    fun getProduct(barcode:String): OffV3Dto? {
+    fun getProduct(barcode: String): OffV3Dto? {
         val uri = "/api/v3/product/$barcode.json"
 
         return getRestClient()

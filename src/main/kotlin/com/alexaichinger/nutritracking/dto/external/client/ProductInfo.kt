@@ -1,15 +1,15 @@
 package com.alexaichinger.nutritracking.dto.external.client
 
-import com.alexaichinger.nutritracking.dto.external.open.food.facts.v3.OffIngredientsV3Dto
-import com.alexaichinger.nutritracking.dto.external.open.food.facts.v3.OffV3Dto
+import com.alexaichinger.nutritracking.dto.external.openfoodfacts.v3.OffIngredientsV3Dto
+import com.alexaichinger.nutritracking.dto.external.openfoodfacts.v3.OffV3Dto
 import java.math.BigDecimal
 
 data class ProductInfo(
     val barcode: String,
     val brands: String,
-    val ecoScoreGrade: String, // a,b,c,e
-    val ecoScoreScore: Int, // 0..100
-    val foodGroups: String, // en:sweets
+    val ecoScoreGrade: String,
+    val ecoScoreScore: Int,
+    val foodGroups: String,
     val genericName: String,
     val labels: String,
     val productQuantity: BigDecimal,
@@ -60,11 +60,11 @@ data class MicroNutrients(
 )
 
 class Ingredients(
-    var percentEstimate: Int, //0..100
-    var vegan: Boolean? = null, // yes
-    var vegetarian: Boolean? = null, // yes
+    var percentEstimate: Int,
+    var vegan: Boolean? = null,
+    var vegetarian: Boolean? = null,
     var ingredients: List<Ingredients>? = listOf(),
-    var text: String, // "concentrated lemon juice"
+    var text: String,
 )
 
 class MacroNutrients(
@@ -94,59 +94,62 @@ fun OffV3Dto.toClientDto(): ProductInfo {
         labels = product.labels,
         productQuantity = product.productQuantity,
         ingredients = product.ingredients.map { it.toClientDto() },
-        nutrients = Nutrients(
-            macros = MacroNutrients(
-                carbohydrates100g = product.nutriments.carbohydrates100g,
-                carbohydratesUnit = product.nutriments.carbohydratesUnit,
-                energyKcal100g = product.nutriments.energyKcal100g,
-                fat100g = product.nutriments.fat100g,
-                fatUnit = product.nutriments.fatUnit,
-                fiber100g = product.nutriments.fiber100g,
-                fiberUnit = product.nutriments.fiberUnit,
-                fruitsVegetablesLegumesEstimateFromIngredients100g = product.nutriments.fruitsVegetablesLegumesEstimateFromIngredients100g,
-                fruitsVegetablesNutsEstimateFromIngredients100g = product.nutriments.fruitsVegetablesNutsEstimateFromIngredients100g,
-                proteins100g = product.nutriments.proteins100g,
-                proteinsUnit = product.nutriments.proteinsUnit,
-                sugars100g = product.nutriments.sugars100g,
-                sugarsUnit = product.nutriments.sugarsUnit,
+        nutrients =
+            Nutrients(
+                macros =
+                    MacroNutrients(
+                        carbohydrates100g = product.nutriments.carbohydrates100g,
+                        carbohydratesUnit = product.nutriments.carbohydratesUnit,
+                        energyKcal100g = product.nutriments.energyKcal100g,
+                        fat100g = product.nutriments.fat100g,
+                        fatUnit = product.nutriments.fatUnit,
+                        fiber100g = product.nutriments.fiber100g,
+                        fiberUnit = product.nutriments.fiberUnit,
+                        fruitsVegetablesLegumesEstimateFromIngredients100g = product.nutriments.fruitsVegetablesLegumesEstimateFromIngredients100g,
+                        fruitsVegetablesNutsEstimateFromIngredients100g = product.nutriments.fruitsVegetablesNutsEstimateFromIngredients100g,
+                        proteins100g = product.nutriments.proteins100g,
+                        proteinsUnit = product.nutriments.proteinsUnit,
+                        sugars100g = product.nutriments.sugars100g,
+                        sugarsUnit = product.nutriments.sugarsUnit,
+                    ),
+                micros =
+                    MicroNutrients(
+                        alcohol100g = product.nutrimentsEstimated.alcohol100g,
+                        betaCarotene100g = product.nutrimentsEstimated.betaCarotene100g,
+                        calcium100g = product.nutrimentsEstimated.calcium100g,
+                        cholesterol100g = product.nutrimentsEstimated.cholesterol100g,
+                        copper100g = product.nutrimentsEstimated.copper100g,
+                        fructose100g = product.nutrimentsEstimated.fructose100g,
+                        galactose100g = product.nutrimentsEstimated.galactose100g,
+                        glucose100g = product.nutrimentsEstimated.glucose100g,
+                        iodine100g = product.nutrimentsEstimated.iodine100g,
+                        iron100g = product.nutrimentsEstimated.iron100g,
+                        lactose100g = product.nutrimentsEstimated.lactose100g,
+                        magnesium100g = product.nutrimentsEstimated.magnesium100g,
+                        maltose100g = product.nutrimentsEstimated.maltose100g,
+                        manganese100g = product.nutrimentsEstimated.manganese100g,
+                        pantothenicAcid100g = product.nutrimentsEstimated.pantothenicAcid100g,
+                        phosphorus100g = product.nutrimentsEstimated.phosphorus100g,
+                        phylloquinone100g = product.nutrimentsEstimated.phylloquinone100g,
+                        polyols100g = product.nutrimentsEstimated.polyols100g,
+                        potassium100g = product.nutrimentsEstimated.potassium100g,
+                        selenium100g = product.nutrimentsEstimated.selenium100g,
+                        starch100g = product.nutrimentsEstimated.starch100g,
+                        sucrose100g = product.nutrimentsEstimated.sucrose100g,
+                        vitaminA100g = product.nutrimentsEstimated.vitaminA100g,
+                        vitaminB12100g = product.nutrimentsEstimated.vitaminB12100g,
+                        vitaminB100g = product.nutrimentsEstimated.vitaminB100g,
+                        vitaminB200g = product.nutrimentsEstimated.vitaminB200g,
+                        vitaminB6100g = product.nutrimentsEstimated.vitaminB6100g,
+                        vitaminB9100g = product.nutrimentsEstimated.vitaminB9100g,
+                        vitaminC100g = product.nutrimentsEstimated.vitaminC100g,
+                        vitaminD100g = product.nutrimentsEstimated.vitaminD100g,
+                        vitaminE100g = product.nutrimentsEstimated.vitaminE100g,
+                        vitaminPp100g = product.nutrimentsEstimated.vitaminPp100g,
+                        water100g = product.nutrimentsEstimated.water100g,
+                        zinc100g = product.nutrimentsEstimated.zinc100g,
+                    ),
             ),
-            micros = MicroNutrients(
-                alcohol100g = product.nutrimentsEstimated.alcohol100g,
-                betaCarotene100g = product.nutrimentsEstimated.betaCarotene100g,
-                calcium100g = product.nutrimentsEstimated.calcium100g,
-                cholesterol100g = product.nutrimentsEstimated.cholesterol100g,
-                copper100g = product.nutrimentsEstimated.copper100g,
-                fructose100g = product.nutrimentsEstimated.fructose100g,
-                galactose100g = product.nutrimentsEstimated.galactose100g,
-                glucose100g = product.nutrimentsEstimated.glucose100g,
-                iodine100g = product.nutrimentsEstimated.iodine100g,
-                iron100g = product.nutrimentsEstimated.iron100g,
-                lactose100g = product.nutrimentsEstimated.lactose100g,
-                magnesium100g = product.nutrimentsEstimated.magnesium100g,
-                maltose100g = product.nutrimentsEstimated.maltose100g,
-                manganese100g = product.nutrimentsEstimated.manganese100g,
-                pantothenicAcid100g = product.nutrimentsEstimated.pantothenicAcid100g,
-                phosphorus100g = product.nutrimentsEstimated.phosphorus100g,
-                phylloquinone100g = product.nutrimentsEstimated.phylloquinone100g,
-                polyols100g = product.nutrimentsEstimated.polyols100g,
-                potassium100g = product.nutrimentsEstimated.potassium100g,
-                selenium100g = product.nutrimentsEstimated.selenium100g,
-                starch100g = product.nutrimentsEstimated.starch100g,
-                sucrose100g = product.nutrimentsEstimated.sucrose100g,
-                vitaminA100g = product.nutrimentsEstimated.vitaminA100g,
-                vitaminB12100g = product.nutrimentsEstimated.vitaminB12100g,
-                vitaminB100g = product.nutrimentsEstimated.vitaminB100g,
-                vitaminB200g = product.nutrimentsEstimated.vitaminB200g,
-                vitaminB6100g = product.nutrimentsEstimated.vitaminB6100g,
-                vitaminB9100g = product.nutrimentsEstimated.vitaminB9100g,
-                vitaminC100g = product.nutrimentsEstimated.vitaminC100g,
-                vitaminD100g = product.nutrimentsEstimated.vitaminD100g,
-                vitaminE100g = product.nutrimentsEstimated.vitaminE100g,
-                vitaminPp100g = product.nutrimentsEstimated.vitaminPp100g,
-                water100g = product.nutrimentsEstimated.water100g,
-                zinc100g = product.nutrimentsEstimated.zinc100g,
-            )
-        )
     )
 }
 
@@ -156,6 +159,6 @@ fun OffIngredientsV3Dto.toClientDto(): Ingredients {
         vegan = vegan == "yes",
         vegetarian = vegetarian == "yes",
         text = text,
-        ingredients = ingredients?.map { it.toClientDto() }
+        ingredients = ingredients?.map { it.toClientDto() },
     )
 }

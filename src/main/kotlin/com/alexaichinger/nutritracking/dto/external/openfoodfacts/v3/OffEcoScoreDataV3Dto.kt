@@ -1,4 +1,4 @@
-package com.alexaichinger.nutritracking.dto.external.open.food.facts.v3
+package com.alexaichinger.nutritracking.dto.external.openfoodfacts.v3
 
 import com.fasterxml.jackson.annotation.JsonAlias
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
@@ -9,11 +9,10 @@ data class OffEcoScoreDataV3Dto(
 //    var threatenedSpecies: ThreatenedSpecies,
     var agribalyse: OffAgribalyseV3Dto,
     var grade: String,
-    var grades: Map<String, String>, // region, value
-    // eco-score
-    var score: Int, // 0..100
-    var scores: Map<String, String>, // region, value
-    var status: String, // known
+    var grades: Map<String, String>,
+    var score: Int,
+    var scores: Map<String, String>,
+    var status: String,
 )
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -32,7 +31,7 @@ data class OffAgribalyseV3Dto(
     val co2Transportation: Double,
     @JsonAlias("co2_processing")
     val co2Processing: Double,
-    val score: Int, // 0..100
+    val score: Int,
 )
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -50,5 +49,5 @@ data class OffAdjustmentsV3Dto(
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class OffOriginsOfIngredientsV3Dto(
     var epiScore: Int,
-    var warning: String // origins_are_100_percent_unknown
+    var warning: String,
 )

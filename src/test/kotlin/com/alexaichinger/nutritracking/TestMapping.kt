@@ -1,17 +1,15 @@
 package com.alexaichinger.nutritracking
 
-import com.alexaichinger.nutritracking.dto.external.open.food.facts.v3.Off3Dto
+import com.alexaichinger.nutritracking.dto.external.openfoodfacts.v3.OffV3Dto
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import kotlin.test.Test
 
 class TestMapping {
-
     @Test
     fun test() {
         var mapper = jacksonObjectMapper()
-        val maped = mapper.readValue<Off3Dto>(body)
-
+        val maped = mapper.readValue<OffV3Dto>(body)
     }
 
     val body = """
