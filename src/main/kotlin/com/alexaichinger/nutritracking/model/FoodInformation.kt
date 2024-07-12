@@ -1,7 +1,10 @@
 package com.alexaichinger.nutritracking.model
 
+
 data class FoodInformation(
     var name: String,
+    var brand: String? = null,
     var barcode: String,
-    var nutritionInformation: NutritionInformation,
+    var macroNutrients: MacroNutrients,
+    var microNutrients: MicroNutrients,
 )

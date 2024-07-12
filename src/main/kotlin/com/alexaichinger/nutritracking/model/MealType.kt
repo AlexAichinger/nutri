@@ -1,6 +1,6 @@
 package com.alexaichinger.nutritracking.model
 
-enum class MealTime {
+enum class MealType {
     BREAKFAST,
     LUNCH,
     DINNER,

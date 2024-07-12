@@ -8,10 +8,10 @@ data class OffEcoScoreDataV3Dto(
     var adjustments: OffAdjustmentsV3Dto,
 //    var threatenedSpecies: ThreatenedSpecies,
     var agribalyse: OffAgribalyseV3Dto,
-    var grade: String,
-    var grades: Map<String, String>,
-    var score: Int,
-    var scores: Map<String, String>,
+    var grade: String? = null,
+    var grades: Map<String, String>? = emptyMap(),
+    var score: Int? = null,
+    var scores: Map<String, String>? = emptyMap(),
     var status: String,
 )
 

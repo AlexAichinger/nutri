@@ -1,8 +1,10 @@
 package com.alexaichinger.nutritracking.service
 
-import com.alexaichinger.nutritracking.dto.internal.MacrosDto
+import com.alexaichinger.nutritracking.dto.internal.MacroNutrientsDto
+import com.alexaichinger.nutritracking.dto.internal.NutrientsDto
 import com.alexaichinger.nutritracking.model.MealEntry
 import com.alexaichinger.nutritracking.repository.MealEntryRepository
+import com.alexaichinger.nutritracking.service.helpers.plus
 import org.springframework.stereotype.Service
 import java.math.BigDecimal
 import java.time.LocalDate
@@ -11,65 +13,55 @@ import java.time.LocalDate
 class MacrosService(
     private val repository: MealEntryRepository,
 ) {
-    fun getUserMacros(
+    fun getTotalUserNutrients(
         user: String,
         day: LocalDate,
-    ): MacrosDto {
+    ): NutrientsDto {
         val entries = repository.findByUserAndLoggingDate(user, day)
 
-        return getMacros(entries)
+        return NutrientsDto(
+            macroNutrients = getMacros(entries),
+            microNutrients =
+        )
     }
 
-    private fun getMacros(entries: List<MealEntry>): MacrosDto {
+    private fun getMacros(entries: List<MealEntry>): MacroNutrientsDto {
         var calories = BigDecimal.ZERO
         var protein = BigDecimal.ZERO
         var fat = BigDecimal.ZERO
         var carbs = BigDecimal.ZERO
         var fiber = BigDecimal.ZERO
-        var addedSugar = BigDecimal.ZERO
-        var naturalSugar = BigDecimal.ZERO
+        var sugars = BigDecimal.ZERO
         var saturatedFat = BigDecimal.ZERO
         var unsaturatedFat = BigDecimal.ZERO
         var sodium = BigDecimal.ZERO
-        var cholestral = BigDecimal.ZERO
-        var potassium = BigDecimal.ZERO
+        var salt = BigDecimal.ZERO
 
         entries.forEach {
-            val info = it.foodInformation.nutritionInformation
-            calories = plus(calories, info.calories)
+            val info = it.foodInformation.macroNutrients
+            calories = plus(calories, info.energyKcal)
             fat = plus(fat, info.fat)
-            protein = plus(protein, info.protein)
-            carbs = plus(carbs, info.carbs)
+            protein = plus(protein, info.proteins)
+            carbs = plus(carbs, info.carbohydrates)
             fiber = plus(fiber, info.fiber)
-            addedSugar = plus(addedSugar, info.addedSugar)
-            naturalSugar = plus(naturalSugar, info.naturalSugar)
+            sugars = plus(sugars, info.sugars)
             saturatedFat = plus(saturatedFat, info.saturatedFat)
-            unsaturatedFat = plus(unsaturatedFat, info.unsaturatedFat)
+            unsaturatedFat = fat.minus(saturatedFat)
+            salt = plus(salt, info.salt)
             sodium = plus(sodium, info.sodium)
-            cholestral = plus(cholestral, info.cholestral)
-            potassium = plus(potassium, info.potassium)
         }
 
-        return MacrosDto(
-            calories,
-            protein,
-            fat,
-            carbs,
-            fiber,
-            addedSugar,
-            naturalSugar,
-            saturatedFat,
-            unsaturatedFat,
-            sodium,
-            cholestral,
-            potassium,
+        return NutrientsDto(
+            energyKcal = calories,
+            protein = protein,
+            fat = fat,
+            carbs = carbs,
+            fiber = fiber,
+            sugars = sugars,
+            saturatedFat = saturatedFat,
+            unsaturatedFat = unsaturatedFat,
+            sodium = sodium,
+            salt = salt
         )
-    }
-
-    fun plus(
-        num: BigDecimal,
-        number: BigDecimal?,
-    ): BigDecimal {
-        return if (number == null) num else num.plus(number)
     }
 }

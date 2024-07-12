@@ -1,80 +1,77 @@
 package com.alexaichinger.nutritracking.dto.internal
 
+import com.alexaichinger.nutritracking.dto.external.client.ClientMicroNutrients
 import com.alexaichinger.nutritracking.model.FoodInformation
 import com.alexaichinger.nutritracking.model.MealEntry
-import com.alexaichinger.nutritracking.model.MealTime
-import com.alexaichinger.nutritracking.model.NutritionInformation
+import com.alexaichinger.nutritracking.model.MealType
+import com.alexaichinger.nutritracking.model.MacroNutrients
 import com.fasterxml.jackson.annotation.JsonFormat
 import java.math.BigDecimal
 import java.time.LocalDate
 
 data class MealEntryDto(
     val user: String,
-    val mealTime: MealTime,
+    val mealType: MealType,
+    val eatenInGrams: BigDecimal,
     @JsonFormat(pattern = "dd/MM/yyyy")
     val loggingDate: LocalDate,
-    val manualFoodInformation: ManualFoodInformationDto?,
-    val openFoodFactsProductTracking: OpenFoodFactsProductTracking?,
+    val manualFoodInformation: ManualFoodInformationDto,
+    val openFoodFactsProductTracking: OpenFoodFactsProductTracking? = null,
 )
 
 data class OpenFoodFactsProductTracking(
     val barcode: String,
-    val eatenInGrams: BigDecimal,
-)
-
-data class NutritionInformationDto(
-    var calories: BigDecimal,
-    var servingSize: BigDecimal? = null,
-    var protein: BigDecimal? = null,
-    var fat: BigDecimal? = null,
-    var carbs: BigDecimal? = null,
-    var fiber: BigDecimal? = null,
-    var addedSugar: BigDecimal? = null,
-    var naturalSugar: BigDecimal? = null,
-    var saturatedFat: BigDecimal? = null,
-    val unsaturatedFat: BigDecimal? = null,
-    var sodium: BigDecimal? = null,
-    var cholestral: BigDecimal? = null,
-    var potassium: BigDecimal? = null,
 )
 
 data class ManualFoodInformationDto(
     var name: String,
     var barcode: String,
-    var nutritionInformation: NutritionInformationDto,
+    var macroNutrients: MacroNutrientsDto,
+    var microNutrients: MicroNutrientsDto? = null
 )
 
-fun MealEntryDto.toEntity(): MealEntry {
+fun MealEntryDto.toEntity(eatenInGrams: BigDecimal): MealEntry {
     return MealEntry(
         user = user,
-        mealTime = mealTime,
+        mealType = mealType,
         loggingDate = loggingDate,
-        foodInformation = manualFoodInformation!!.toEntity(),
+        foodInformation = manualFoodInformation.toEntity(eatenInGrams),
     )
 }
 
-fun ManualFoodInformationDto.toEntity(): FoodInformation {
+fun ManualFoodInformationDto.toEntity(eatenInGrams: BigDecimal): FoodInformation {
     return FoodInformation(
         name = name,
+        brand = null,
         barcode = barcode,
-        nutritionInformation = nutritionInformation.toEntity(),
+        macroNutrients = macroNutrients.toEntity(eatenInGrams),
+        microNutrients = ClientMicroNutrients()
     )
 }
 
-fun NutritionInformationDto.toEntity(): NutritionInformation {
-    return NutritionInformation(
-        calories = calories,
-        servingSize = servingSize,
-        protein = protein,
+fun MacroNutrientsDto.toEntity(eatenInGrams: BigDecimal): MacroNutrients {
+    return MacroNutrients(
+        energyKcal = energyKcal,
+        servingSizeG = eatenInGrams,
+        carbohydrates = carbohydrates,
+        carbohydratesUnit = carbohydratesUnit,
         fat = fat,
-        carbs = carbs,
+        fatUnit = fatUnit,
         fiber = fiber,
-        addedSugar = addedSugar,
-        naturalSugar = naturalSugar,
+        fiberUnit = fiberUnit,
+        proteins = proteins,
+        proteinsUnit = proteinsUnit,
+        salt = salt,
+        saltUnit = saltUnit,
         saturatedFat = saturatedFat,
-        unsaturatedFat = unsaturatedFat,
+        saturatedFatUnit = saturatedFatUnit,
         sodium = sodium,
-        cholestral = cholestral,
-        potassium = potassium,
+        sodiumUnit = sodiumUnit,
+        sugars = sugars,
+        sugarsUnit = sugarsUnit,
+        fruitsVegetablesLegumesEstimateFromIngredientsServing = BigDecimal.ZERO,
+        fruitsVegetablesNutsEstimateFromIngredientsServing = BigDecimal.ZERO,
+        fruitsVegetablesLegumesEstimateFromIngredients100g = BigDecimal.ZERO,
+        fruitsVegetablesNutsEstimateFromIngredients100g = BigDecimal.ZERO,
     )
 }

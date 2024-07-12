@@ -1,6 +1,6 @@
 package com.alexaichinger.nutritracking.web
 
-import com.alexaichinger.nutritracking.dto.internal.MacrosDto
+import com.alexaichinger.nutritracking.dto.internal.NutrientsDto
 import com.alexaichinger.nutritracking.service.MacrosService
 import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.GetMapping
@@ -18,10 +18,10 @@ class MacronutrientsController(
         "/{date}",
         produces = [MediaType.APPLICATION_JSON_VALUE],
     )
-    fun getMeals(
+    fun getTotalNutrients(
         @PathVariable user: String,
         @PathVariable date: LocalDate,
-    ): MacrosDto {
-        return macrosService.getUserMacros(user, date)
+    ): NutrientsDto {
+        return macrosService.getTotalUserNutrients(user, date)
     }
 }

@@ -1,6 +1,6 @@
 package com.alexaichinger.nutritracking.web
 
-import com.alexaichinger.nutritracking.dto.external.client.ProductInfo
+import com.alexaichinger.nutritracking.dto.external.client.ClientProductInfo
 import com.alexaichinger.nutritracking.service.openfoodfacts.OpenFoodFactsService
 import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.GetMapping
@@ -19,7 +19,7 @@ class ProductInformationController(
     )
     fun getProduct(
         @PathVariable barcode: String,
-    ): ProductInfo? {
+    ): ClientProductInfo? {
         return foodFactsService.getProductInfo(barcode)
     }
 }

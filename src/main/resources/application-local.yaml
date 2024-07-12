@@ -1,6 +1,6 @@
 # V1 API - https://world.openfoodfacts.org/files/api-documentation.html
 # V2 API - https://openfoodfacts.github.io/openfoodfacts-server/api/ref-v2/#cmp--schemas-product-nutrition
 openFoodFacts:
-  baseUrl: https://world.openfoodfacts.net/
+  baseUrl: https://world.openfoodfacts.org/
 
 

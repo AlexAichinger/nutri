@@ -1,6 +1,6 @@
 package com.alexaichinger.nutritracking.service.openfoodfacts
 
-import com.alexaichinger.nutritracking.dto.external.client.ProductInfo
+import com.alexaichinger.nutritracking.dto.external.client.ClientProductInfo
 import com.alexaichinger.nutritracking.dto.external.client.toClientDto
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -13,7 +13,7 @@ open class OpenFoodFactsService(
 ) {
     private val log: Logger = LoggerFactory.getLogger(javaClass)
 
-    fun getProductInfo(barcode: String): ProductInfo? {
+    fun getProductInfo(barcode: String): ClientProductInfo? {
         return try {
             val productResponse = openFoodFactsClient.getProduct(barcode)
             return productResponse?.toClientDto()

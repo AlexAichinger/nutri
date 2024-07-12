@@ -12,7 +12,7 @@ data class MealEntry(
     @Id
     val id: String? = null,
     var user: String,
-    var mealTime: MealTime,
+    var mealType: MealType,
     var loggingDate: LocalDate,
     val foodInformation: FoodInformation,
 )

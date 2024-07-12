@@ -7,8 +7,15 @@ import java.math.BigDecimal
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class OffProductV3Dto(
     var brands: String,
+    @JsonAlias("brands_tags")
+    var brandsTags: List<String>,
+    @JsonAlias("additives_n")
+    var additivesN: Int? = null,
+    @JsonAlias("additives_original_tags")
+    var additivesOriginalTags: List<String>? = listOf(),
     @JsonAlias("categories_properties_tags")
     var categoriesPropertiesTags: List<String>,
+    var categories: String? = null,
     @JsonAlias("countries_hierarchy")
     var countriesHierarchy: List<String>,
     @JsonAlias("countries_tags")
@@ -16,7 +23,7 @@ data class OffProductV3Dto(
     @JsonAlias("data_sources_tags")
     var dataSourcesTags: List<String>,
     @JsonAlias("ecoscore_data")
-    var ecoScoreData: OffEcoScoreDataV3Dto,
+    var ecoScoreData: OffEcoScoreDataV3Dto? = null,
     @JsonAlias("ecoscore_grade")
     var ecoScoreGrade: String,
     @JsonAlias("ecoscore_score")
@@ -26,7 +33,7 @@ data class OffProductV3Dto(
     @JsonAlias("fruits-vegetables-nuts_100g_estimate")
     var fruitsVegetablesNuts100gEstimate: Int,
     @JsonAlias("generic_name")
-    val genericName: String,
+    val genericName: String? = null,
     var ingredients: List<OffIngredientsV3Dto>,
     @JsonAlias("ingredients_analysis_tags")
     var ingredientsAnalysisTags: List<String>,
@@ -35,25 +42,25 @@ data class OffProductV3Dto(
     @JsonAlias("ingredients_tags")
     var ingredientsTags: List<String>,
     @JsonAlias("ingredients_text_en")
-    var ingredientsTextEn: String,
-    var labels: String,
+    var ingredientsTextEn: String? = null,
+    var labels: String? = null,
     @JsonAlias("manufacturing_places")
-    var manufacturingPlaces: String,
+    var manufacturingPlaces: String? = null,
     @JsonAlias("nova_group")
     var novaGroup: Int,
     @JsonAlias("nova_groups_tags")
     var novaGroupsTags: List<String>,
     var nutriments: OffNutrimentsV3Dto,
     @JsonAlias("nutriments_estimated")
-    var nutrimentsEstimated: OffNutrimentsEstimatedV3Dto,
+    var nutrimentsEstimated: OffNutrimentsEstimatedV3Dto? = null,
     @JsonAlias("popularity_tags")
     var popularityTags: List<String>,
     @JsonAlias("product_name")
     var productName: String,
     @JsonAlias("product_name_en")
-    var productNameEn: String,
+    var productNameEn: String? = null,
     @JsonAlias("product_quantity")
-    var productQuantity: BigDecimal,
+    var productQuantity: BigDecimal? = null,
 )
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -165,6 +172,24 @@ data class OffNutrimentsV3Dto(
     var proteins100g: BigDecimal,
     @JsonAlias("proteins_unit")
     var proteinsUnit: String,
+    @JsonAlias("salt")
+    var salt: BigDecimal,
+    @JsonAlias("salt_100g")
+    var salt100g: BigDecimal,
+    @JsonAlias("salt_unit")
+    var saltUnit: String,
+    @JsonAlias("saturated-fat")
+    var saturatedFat: BigDecimal,
+    @JsonAlias("saturated-fat_100g")
+    var saturatedFat100g: BigDecimal,
+    @JsonAlias("saturated-fat_unit")
+    var saturatedFatUnit: String,
+    @JsonAlias("sodium")
+    var sodium: BigDecimal,
+    @JsonAlias("sodium_100g")
+    var sodium100g: BigDecimal,
+    @JsonAlias("sodium_unit")
+    var sodiumUnit: String,
     @JsonAlias("sugars")
     var sugars: BigDecimal,
     @JsonAlias("sugars_100g")

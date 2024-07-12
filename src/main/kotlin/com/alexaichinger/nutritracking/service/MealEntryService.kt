@@ -1,11 +1,11 @@
 package com.alexaichinger.nutritracking.service
 
-import com.alexaichinger.nutritracking.dto.external.client.ProductInfo
+import com.alexaichinger.nutritracking.dto.external.client.ClientProductInfo
 import com.alexaichinger.nutritracking.dto.internal.MealEntryDto
 import com.alexaichinger.nutritracking.dto.internal.toEntity
 import com.alexaichinger.nutritracking.model.FoodInformation
 import com.alexaichinger.nutritracking.model.MealEntry
-import com.alexaichinger.nutritracking.model.NutritionInformation
+import com.alexaichinger.nutritracking.model.MacroNutrients
 import com.alexaichinger.nutritracking.repository.MealEntryRepository
 import com.alexaichinger.nutritracking.service.openfoodfacts.OpenFoodFactsService
 import org.slf4j.Logger
@@ -25,6 +25,7 @@ open class MealEntryService(
     fun logMeal(entry: MealEntryDto): MealEntry {
         return if (entry.openFoodFactsProductTracking != null) {
             automaticLogging(entry)
+            manualLogging(entry)
         } else {
             manualLogging(entry)
         }
@@ -38,7 +39,7 @@ open class MealEntryService(
     }
 
     private fun manualLogging(entry: MealEntryDto): MealEntry {
-        val entryToLog = entry.toEntity()
+        val entryToLog = entry.toEntity(entry.eatenInGrams)
         val savedEntry = mealEntryRepository.save(entryToLog) // TODO: Handle differently
         return savedEntry
     }
@@ -52,18 +53,18 @@ open class MealEntryService(
     }
 }
 
-fun ProductInfo.toMealEntry(mealEntryDto: MealEntryDto): MealEntry {
+fun ClientProductInfo.toMealEntry(mealEntryDto: MealEntryDto): MealEntry {
     val ratio = mealEntryDto.openFoodFactsProductTracking!!.eatenInGrams.divide(BigDecimal.valueOf(100))
     return MealEntry(
         user = mealEntryDto.user,
-        mealTime = mealEntryDto.mealTime,
+        mealType = mealEntryDto.mealType,
         loggingDate = mealEntryDto.loggingDate,
         foodInformation =
             FoodInformation(
                 name = genericName,
                 barcode = mealEntryDto.openFoodFactsProductTracking.barcode,
-                nutritionInformation =
-                    NutritionInformation(
+                macroNutrients =
+                    MacroNutrients(
                         calories = nutrients.macros.energyKcal100g.multiply(ratio),
                         servingSize = mealEntryDto.openFoodFactsProductTracking.eatenInGrams,
                         protein = nutrients.macros.proteins100g.multiply(ratio),
