@@ -4,3 +4,8 @@ openFoodFacts:
   baseUrl: https://world.openfoodfacts.org/
 
 
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG

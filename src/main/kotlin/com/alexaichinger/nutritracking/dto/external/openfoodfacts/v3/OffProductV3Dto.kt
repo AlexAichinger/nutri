@@ -58,7 +58,7 @@ data class OffProductV3Dto(
     @JsonAlias("product_name")
     var productName: String,
     @JsonAlias("product_name_en")
-    var productNameEn: String? = null,
+    var productNameEn: String,
     @JsonAlias("product_quantity")
     var productQuantity: BigDecimal? = null,
 )

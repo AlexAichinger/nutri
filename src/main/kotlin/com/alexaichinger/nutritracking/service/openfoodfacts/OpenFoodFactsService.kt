@@ -2,13 +2,14 @@ package com.alexaichinger.nutritracking.service.openfoodfacts
 
 import com.alexaichinger.nutritracking.dto.external.client.ClientProductInfo
 import com.alexaichinger.nutritracking.dto.external.client.toClientDto
+import com.alexaichinger.nutritracking.dto.external.openfoodfacts.v3.OffV3Dto
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
 import org.springframework.web.client.HttpClientErrorException
 
 @Service
-open class OpenFoodFactsService(
+class OpenFoodFactsService(
     private val openFoodFactsClient: FoodFactsRestClientService,
 ) {
     private val log: Logger = LoggerFactory.getLogger(javaClass)
@@ -16,7 +17,7 @@ open class OpenFoodFactsService(
     fun getProductInfo(barcode: String): ClientProductInfo? {
         return try {
             val productResponse = openFoodFactsClient.getProduct(barcode)
-            return productResponse?.toClientDto()
+            return productResponse!!.toClientDto()
         } catch (e: HttpClientErrorException) {
             when {
                 e.statusCode.is4xxClientError -> handle4xxError(barcode, e)

@@ -1,6 +1,7 @@
 package com.alexaichinger.nutritracking.web
 
-import com.alexaichinger.nutritracking.dto.internal.MealEntryDto
+import com.alexaichinger.nutritracking.dto.internal.AutomaticTrackingMeal
+import com.alexaichinger.nutritracking.dto.internal.ManualMealEntryDto
 import com.alexaichinger.nutritracking.model.MealEntry
 import com.alexaichinger.nutritracking.service.MealEntryService
 import org.slf4j.Logger
@@ -25,18 +26,26 @@ class MealsController(
     private val log: Logger = LoggerFactory.getLogger(javaClass)
 
     @PostMapping(
+        "/manual",
         consumes = [MediaType.APPLICATION_JSON_VALUE],
     )
-    fun trackMeal(
+    fun manualMealTracking(
         @PathVariable user: String,
-        @RequestBody meal: MealEntryDto,
+        @RequestBody meal: ManualMealEntryDto,
     ): ResponseEntity<String> {
-        mealService.logMeal(meal)
-        return if (!((meal.openFoodFactsProductTracking == null) xor (meal.manualFoodInformation == null))) {
-            return ResponseEntity("Verify your request, can't manually and automatically log meal.", HttpStatus.BAD_REQUEST)
-        } else {
-            ResponseEntity("Successfully logged meal.", HttpStatus.ACCEPTED)
-        }
+        mealService.manualTrackMeal(meal)
+        return ResponseEntity("Successfully logged meal.", HttpStatus.ACCEPTED)
+    }
+
+    @PostMapping(
+        consumes = [MediaType.APPLICATION_JSON_VALUE],
+    )
+    fun automatedMealTracking(
+        @PathVariable user: String,
+        @RequestBody meal: AutomaticTrackingMeal,
+    ): ResponseEntity<String> {
+        mealService.automaticMealTracking(meal)
+        return ResponseEntity("Successfully logged meal.", HttpStatus.ACCEPTED)
     }
 
     @GetMapping(

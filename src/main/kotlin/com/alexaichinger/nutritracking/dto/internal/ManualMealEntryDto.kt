@@ -1,36 +1,30 @@
 package com.alexaichinger.nutritracking.dto.internal
 
-import com.alexaichinger.nutritracking.dto.external.client.ClientMicroNutrients
 import com.alexaichinger.nutritracking.model.FoodInformation
 import com.alexaichinger.nutritracking.model.MealEntry
 import com.alexaichinger.nutritracking.model.MealType
 import com.alexaichinger.nutritracking.model.MacroNutrients
+import com.alexaichinger.nutritracking.model.MicroNutrients
 import com.fasterxml.jackson.annotation.JsonFormat
 import java.math.BigDecimal
 import java.time.LocalDate
 
-data class MealEntryDto(
+data class ManualMealEntryDto(
     val user: String,
     val mealType: MealType,
     val eatenInGrams: BigDecimal,
-    @JsonFormat(pattern = "dd/MM/yyyy")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     val loggingDate: LocalDate,
     val manualFoodInformation: ManualFoodInformationDto,
-    val openFoodFactsProductTracking: OpenFoodFactsProductTracking? = null,
-)
-
-data class OpenFoodFactsProductTracking(
-    val barcode: String,
 )
 
 data class ManualFoodInformationDto(
     var name: String,
-    var barcode: String,
     var macroNutrients: MacroNutrientsDto,
-    var microNutrients: MicroNutrientsDto? = null
+    var microNutrients: MicroNutrientsDto? = createEmptyMicros()
 )
 
-fun MealEntryDto.toEntity(eatenInGrams: BigDecimal): MealEntry {
+fun ManualMealEntryDto.toEntity(eatenInGrams: BigDecimal): MealEntry {
     return MealEntry(
         user = user,
         mealType = mealType,
@@ -43,16 +37,16 @@ fun ManualFoodInformationDto.toEntity(eatenInGrams: BigDecimal): FoodInformation
     return FoodInformation(
         name = name,
         brand = null,
-        barcode = barcode,
+        barcode = null,
         macroNutrients = macroNutrients.toEntity(eatenInGrams),
-        microNutrients = ClientMicroNutrients()
+        microNutrients = createEmptyMicros().toEntity()
     )
 }
 
 fun MacroNutrientsDto.toEntity(eatenInGrams: BigDecimal): MacroNutrients {
     return MacroNutrients(
         energyKcal = energyKcal,
-        servingSizeG = eatenInGrams,
+        eatenGrams = eatenInGrams,
         carbohydrates = carbohydrates,
         carbohydratesUnit = carbohydratesUnit,
         fat = fat,
@@ -73,5 +67,45 @@ fun MacroNutrientsDto.toEntity(eatenInGrams: BigDecimal): MacroNutrients {
         fruitsVegetablesNutsEstimateFromIngredientsServing = BigDecimal.ZERO,
         fruitsVegetablesLegumesEstimateFromIngredients100g = BigDecimal.ZERO,
         fruitsVegetablesNutsEstimateFromIngredients100g = BigDecimal.ZERO,
+    )
+}
+
+fun MicroNutrientsDto.toEntity(): MicroNutrients {
+    return MicroNutrients(
+        alcohol,
+        betaCarotene,
+        caffeine,
+        calcium,
+        cholesterol,
+        copper,
+        fructose,
+        galactose,
+        glucose,
+        iodine,
+        iron,
+        lactose,
+        magnesium,
+        maltose,
+        manganese,
+        pantothenicAcid,
+        phosphorus,
+        phylloquinone,
+        polyols,
+        potassium,
+        selenium,
+        starch,
+        sucrose,
+        vitaminA,
+        vitaminB12,
+        vitaminB,
+        vitaminB2,
+        vitaminB6,
+        vitaminB9,
+        vitaminC,
+        vitaminD,
+        vitaminE,
+        vitaminPp,
+        water,
+        zinc,
     )
 }
