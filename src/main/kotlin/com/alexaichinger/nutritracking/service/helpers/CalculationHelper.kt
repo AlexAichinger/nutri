@@ -8,3 +8,7 @@ fun plus(
 ): BigDecimal {
     return if (number == null) num else num.plus(number)
 }
+
+fun BigDecimal.getRation(): BigDecimal {
+    return this.divide(BigDecimal(100))
+}
