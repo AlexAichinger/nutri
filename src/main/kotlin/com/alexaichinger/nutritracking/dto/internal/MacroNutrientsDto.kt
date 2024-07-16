@@ -23,4 +23,3 @@ data class MacroNutrientsDto(
     val sugars: BigDecimal,
     val sugarsUnit: String,
 )
-

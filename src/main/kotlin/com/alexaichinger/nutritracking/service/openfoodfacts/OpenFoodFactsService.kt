@@ -2,7 +2,6 @@ package com.alexaichinger.nutritracking.service.openfoodfacts
 
 import com.alexaichinger.nutritracking.dto.external.client.ClientProductInfo
 import com.alexaichinger.nutritracking.dto.external.client.toClientDto
-import com.alexaichinger.nutritracking.dto.external.openfoodfacts.v3.OffV3Dto
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service

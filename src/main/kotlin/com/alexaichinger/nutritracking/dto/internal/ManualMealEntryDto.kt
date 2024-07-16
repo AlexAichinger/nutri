@@ -1,9 +1,9 @@
 package com.alexaichinger.nutritracking.dto.internal
 
 import com.alexaichinger.nutritracking.model.FoodInformation
+import com.alexaichinger.nutritracking.model.MacroNutrients
 import com.alexaichinger.nutritracking.model.MealEntry
 import com.alexaichinger.nutritracking.model.MealType
-import com.alexaichinger.nutritracking.model.MacroNutrients
 import com.alexaichinger.nutritracking.model.MicroNutrients
 import com.fasterxml.jackson.annotation.JsonFormat
 import java.math.BigDecimal
@@ -21,7 +21,7 @@ data class ManualMealEntryDto(
 data class ManualFoodInformationDto(
     var name: String,
     var macroNutrients: MacroNutrientsDto,
-    var microNutrients: MicroNutrientsDto? = createEmptyMicros()
+    var microNutrients: MicroNutrientsDto? = createEmptyMicros(),
 )
 
 fun ManualMealEntryDto.toEntity(eatenInGrams: BigDecimal): MealEntry {
@@ -39,7 +39,7 @@ fun ManualFoodInformationDto.toEntity(eatenInGrams: BigDecimal): FoodInformation
         brand = null,
         barcode = null,
         macroNutrients = macroNutrients.toEntity(eatenInGrams),
-        microNutrients = createEmptyMicros().toEntity()
+        microNutrients = createEmptyMicros().toEntity(),
     )
 }
 
