@@ -2,15 +2,12 @@ package com.alexaichinger.nutritracking.repository
 
 import com.alexaichinger.nutritracking.model.MealEntry
 import org.springframework.data.mongodb.repository.MongoRepository
-import java.time.LocalDate
+import java.time.LocalDateTime
 
 interface MealEntryRepository : MongoRepository<MealEntry, String> {
-    fun findByUser(user: String): List<MealEntry>
-
-    fun findByUserAndLoggingDate(
+    fun findByUserAndLoggingDateBetween(
         user: String,
-        loggingDate: LocalDate,
+        start: LocalDateTime,
+        end: LocalDateTime
     ): List<MealEntry>
-
-    fun getById(id: String): MealEntry
 }

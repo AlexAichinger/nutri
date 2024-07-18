@@ -7,14 +7,14 @@ import com.alexaichinger.nutritracking.model.MealType
 import com.alexaichinger.nutritracking.model.MicroNutrients
 import com.fasterxml.jackson.annotation.JsonFormat
 import java.math.BigDecimal
-import java.time.LocalDate
+import java.time.LocalDateTime
 
 data class ManualMealEntryDto(
     val user: String,
     val mealType: MealType,
     val eatenInGrams: BigDecimal,
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    val loggingDate: LocalDate,
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+    val loggingDate: LocalDateTime,
     val manualFoodInformation: ManualFoodInformationDto,
 )
 

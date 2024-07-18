@@ -5,6 +5,8 @@ import com.alexaichinger.nutritracking.dto.internal.MicroNutrientsDto
 import com.alexaichinger.nutritracking.dto.internal.NutrientsDto
 import com.alexaichinger.nutritracking.model.MealEntry
 import com.alexaichinger.nutritracking.repository.MealEntryRepository
+import com.alexaichinger.nutritracking.service.helpers.atEndOfDay
+import com.alexaichinger.nutritracking.service.helpers.atStartOfDay
 import org.springframework.stereotype.Service
 import java.math.BigDecimal
 import java.time.LocalDate
@@ -17,7 +19,10 @@ class MacrosService(
         user: String,
         day: LocalDate,
     ): NutrientsDto {
-        val entries = repository.findByUserAndLoggingDate(user, day)
+        val start = atStartOfDay(day)
+        val end = atEndOfDay(day)
+
+        val entries = repository.findByUserAndLoggingDateBetween(user, start, end)
 
         return getNutrientsDto(entries)
     }
@@ -25,24 +30,24 @@ class MacrosService(
     private fun getNutrientsDto(entries: List<MealEntry>): NutrientsDto {
         // macros
         var carbohydrates = BigDecimal.ZERO
-        var carbohydratesUnit = "undefined"
+        var carbohydratesUnit = "g"
         var energyKcal = BigDecimal.ZERO
         var fat = BigDecimal.ZERO
-        var fatUnit = "undefined"
+        var fatUnit = "g"
         var fiber = BigDecimal.ZERO
-        var fiberUnit = "undefined"
+        var fiberUnit = "g"
         var proteins = BigDecimal.ZERO
-        var proteinsUnit = "undefined"
+        var proteinsUnit = "g"
         var salt = BigDecimal.ZERO
-        var saltUnit = "undefined"
+        var saltUnit = "g"
         var unSaturatedFat = BigDecimal.ZERO
-        var unSaturatedFatUnit = "undefined"
+        var unSaturatedFatUnit = "g"
         var saturatedFat = BigDecimal.ZERO
-        var saturatedFatUnit = "undefined"
+        var saturatedFatUnit = "g"
         var sodium = BigDecimal.ZERO
-        var sodiumUnit = "undefined"
+        var sodiumUnit = "g"
         var sugars = BigDecimal.ZERO
-        var sugarsUnit = "undefined"
+        var sugarsUnit = "g"
 
         // micros
         var alcohol = BigDecimal.ZERO
@@ -83,59 +88,59 @@ class MacrosService(
 
         entries.forEach {
             val macros = it.foodInformation.macroNutrients
-            carbohydrates += macros.carbohydrates
+            carbohydrates = carbohydrates.plus(macros.carbohydrates)
             carbohydratesUnit = macros.carbohydratesUnit
-            energyKcal += macros.energyKcal
-            fat += macros.fat
+            energyKcal = energyKcal.plus(macros.energyKcal)
+            fat = fat.plus(macros.fat)
             fatUnit = macros.fatUnit
-            fiber += macros.fiber
+            fiber = fiber.plus(macros.fiber)
             fiberUnit = macros.fiberUnit
-            proteins += macros.proteins
+            proteins = proteins.plus(macros.proteins)
             proteinsUnit = macros.proteinsUnit
-            salt += macros.salt
+            salt = salt.plus(macros.salt)
             saltUnit = macros.saltUnit
-            saturatedFat += macros.saturatedFat
+            saturatedFat = saturatedFat.plus(macros.saturatedFat)
             saturatedFatUnit = macros.saturatedFatUnit
-            sodium += macros.sodium
+            sodium = sodium.plus(macros.sodium)
             sodiumUnit = macros.sodiumUnit
-            sugars += macros.sugars
+            sugars = sugars.plus(macros.sugars)
             sugarsUnit = macros.sugarsUnit
 
             val micros = it.foodInformation.microNutrients
-            alcohol += micros.alcohol
-            betaCarotene += micros.betaCarotene
-            calcium += micros.calcium
-            cholesterol += micros.cholesterol
-            copper += micros.copper
-            fructose += micros.fructose
-            galactose += micros.galactose
-            glucose += micros.glucose
-            iodine += micros.iodine
-            iron += micros.iron
-            lactose += micros.lactose
-            magnesium += micros.magnesium
-            maltose += micros.maltose
-            manganese += micros.manganese
-            pantothenicAcid += micros.pantothenicAcid
-            phosphorus += micros.phosphorus
-            phylloquinone += micros.phylloquinone
-            polyols += micros.polyols
-            potassium += micros.potassium
-            selenium += micros.selenium
-            starch += micros.starch
-            sucrose += micros.sucrose
-            vitaminA += micros.vitaminA
-            vitaminB12 += micros.vitaminB12
-            vitaminB += micros.vitaminB
-            vitaminB2 += micros.vitaminB2
-            vitaminB6 += micros.vitaminB6
-            vitaminB9 += micros.vitaminB9
-            vitaminC += micros.vitaminC
-            vitaminD += micros.vitaminD
-            vitaminE += micros.vitaminE
-            vitaminPp += micros.vitaminPp
-            water += micros.water
-            zinc += micros.zinc
+            alcohol = alcohol.plus(micros.alcohol)
+            betaCarotene = betaCarotene.plus(micros.betaCarotene)
+            calcium = calcium.plus(micros.calcium)
+            cholesterol = cholesterol.plus(micros.cholesterol)
+            copper = copper.plus(micros.copper)
+            fructose = fructose.plus(micros.fructose)
+            galactose = galactose.plus(micros.galactose)
+            glucose = glucose.plus(micros.glucose)
+            iodine = iodine.plus(micros.iodine)
+            iron = iron.plus(micros.iron)
+            lactose = lactose.plus(micros.lactose)
+            magnesium = magnesium.plus(micros.magnesium)
+            maltose = maltose.plus(micros.maltose)
+            manganese = manganese.plus(micros.manganese)
+            pantothenicAcid = pantothenicAcid.plus(micros.pantothenicAcid)
+            phosphorus = phosphorus.plus(micros.phosphorus)
+            phylloquinone = phylloquinone.plus(micros.phylloquinone)
+            polyols = polyols.plus(micros.polyols)
+            potassium = potassium.plus(micros.potassium)
+            selenium = selenium.plus(micros.selenium)
+            starch = starch.plus(micros.starch)
+            sucrose = sucrose.plus(micros.sucrose)
+            vitaminA = vitaminA.plus(micros.vitaminA)
+            vitaminB12 = vitaminB12.plus(micros.vitaminB12)
+            vitaminB = vitaminB.plus(micros.vitaminB)
+            vitaminB2 = vitaminB2.plus(micros.vitaminB2)
+            vitaminB6 = vitaminB6.plus(micros.vitaminB6)
+            vitaminB9 = vitaminB9.plus(micros.vitaminB9)
+            vitaminC = vitaminC.plus(micros.vitaminC)
+            vitaminD = vitaminD.plus(micros.vitaminD)
+            vitaminE = vitaminE.plus(micros.vitaminE)
+            vitaminPp = vitaminPp.plus(micros.vitaminPp)
+            water = water.plus(micros.water)
+            zinc = zinc.plus(micros.zinc)
             caffeine += micros.caffeine
         }
 
