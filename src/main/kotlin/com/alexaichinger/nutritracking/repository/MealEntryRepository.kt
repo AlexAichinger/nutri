@@ -8,6 +8,6 @@ interface MealEntryRepository : MongoRepository<MealEntry, String> {
     fun findByUserAndLoggingDateBetween(
         user: String,
         start: LocalDateTime,
-        end: LocalDateTime
+        end: LocalDateTime,
     ): List<MealEntry>
 }
