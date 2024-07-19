@@ -41,7 +41,7 @@ jobs:
     - uses: actions/upload-artifact@master
       with:
         name: jar-file
-        path: build/libs/$(ls build/libs)
+        path: ./build/libs/$(ls build/libs)
 
   dependency-submission:
 
