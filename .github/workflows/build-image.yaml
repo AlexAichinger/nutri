@@ -74,4 +74,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: alexaichinger/nutri:${{ github.ref_name }}
+          tags: ghcr.io/alexaichinger/nutri:${{ github.ref_name }}
