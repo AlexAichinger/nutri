@@ -1,11 +1,5 @@
-# V1 API - https://world.openfoodfacts.org/files/api-documentation.html
-# V2 API - https://openfoodfacts.github.io/openfoodfacts-server/api/ref-v2/#cmp--schemas-product-nutrition
-openFoodFacts:
-  baseUrl: https://world.openfoodfacts.org/
-
-
-logging:
-  level:
-    org:
-      springframework:
-        security: DEBUG
+spring:
+  data:
+    mongodb:
+      auto-index-creation: true
+      uri: mongodb://alex:1234@localhost:27017/tracking?authSource=admin

@@ -9,7 +9,10 @@ import org.springframework.web.bind.annotation.ExceptionHandler
 @ControllerAdvice
 internal class GlobalControllerExceptionHandler {
     @ExceptionHandler(ProductNotFoundException::class)
-    fun handleProductNotFound(request: HttpServletRequest, e: Exception): ResponseEntity<String> {
+    fun handleProductNotFound(
+        request: HttpServletRequest,
+        e: Exception,
+    ): ResponseEntity<String> {
         return ResponseEntity("There was an issue finding this product, it may need to be manually added first.", HttpStatus.NOT_FOUND)
     }
 
@@ -17,7 +20,10 @@ internal class GlobalControllerExceptionHandler {
      * Handle all default errors to hide them externally
      */
     @ExceptionHandler(Exception::class)
-    fun handleDefaultException(request: HttpServletRequest, e: Exception): ResponseEntity<String> {
+    fun handleDefaultException(
+        request: HttpServletRequest,
+        e: Exception,
+    ): ResponseEntity<String> {
         return ResponseEntity("It looks like we had an issue, please reach out to get this fixed.", HttpStatus.INTERNAL_SERVER_ERROR)
     }
 }
