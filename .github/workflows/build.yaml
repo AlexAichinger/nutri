@@ -3,14 +3,11 @@ name: Java CI with Gradle
 on:
   push:
     branches: [ "main" ]
-    tags:
-      - '*'
   pull_request:
     branches: [ "main" ]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -49,7 +46,6 @@ jobs:
         path: app.jar
 
   dependency-submission:
-
     runs-on: ubuntu-latest
     permissions:
       contents: write
