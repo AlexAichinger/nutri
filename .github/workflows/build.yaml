@@ -38,6 +38,9 @@ jobs:
           **/build/reports/
           **/build/test-results/
 
+    - name: Test
+      run: ls
+
     - uses: actions/upload-artifact@master
       with:
         name: jar-file
