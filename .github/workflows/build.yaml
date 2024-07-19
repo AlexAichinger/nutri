@@ -38,13 +38,13 @@ jobs:
           **/build/reports/
           **/build/test-results/
 
-    - name: Test
-      run: ls build/libs/
+    - name: Copy Jar file
+      run: mv build/libs/$(ls build/libs) app.jar
 
     - uses: actions/upload-artifact@master
       with:
         name: jar-file
-        path: ./build/libs/$(ls build/libs)
+        path: app.jar
 
   dependency-submission:
 
