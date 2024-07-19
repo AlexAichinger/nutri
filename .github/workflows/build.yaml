@@ -39,7 +39,7 @@ jobs:
           **/build/test-results/
 
     - name: Test
-      run: ls build/
+      run: ls build/libs/
 
     - uses: actions/upload-artifact@master
       with:
