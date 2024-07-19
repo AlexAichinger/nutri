@@ -29,6 +29,15 @@ jobs:
     - name: Build with Gradle Wrapper
       run: ./gradlew build
 
+    - name: Store reports
+      if: failure()
+      uses: actions/upload-artifact@v3
+      with:
+        name: reports
+        path: |
+          **/build/reports/
+          **/build/test-results/
+
     - uses: actions/upload-artifact@master
       with:
         name: jar-file
