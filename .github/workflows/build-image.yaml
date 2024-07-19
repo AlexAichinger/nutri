@@ -73,6 +73,6 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
-          platform: linux/amd64,linux/arm64
+          platforms: linux/amd64,linux/arm64,linux/arm64/v8
           push: true
           tags: ghcr.io/alexaichinger/nutri:${{ github.ref_name }}
