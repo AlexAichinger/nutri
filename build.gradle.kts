@@ -44,6 +44,7 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
     testImplementation("org.springframework.security:spring-security-test")
+    testImplementation("de.flapdoodle.embed:de.flapdoodle.embed.mongo.spring3x:4.16.1")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 
     implementation("org.springframework.boot:spring-boot-starter-log4j2")
@@ -64,11 +65,4 @@ kotlin {
 
 tasks.withType<Test> {
     useJUnitPlatform()
-}
-
-// Build executable jar
-tasks.jar {
-    enabled = true
-    // Remove `plain` postfix from jar file name
-    archiveClassifier.set("")
 }
