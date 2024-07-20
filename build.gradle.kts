@@ -81,4 +81,7 @@ tasks.named<Jar>("jar") {
 
 tasks.getByName<BootBuildImage>("bootBuildImage") {
     imageName = "alexaich/${project.name}"
+    environment.set(
+        mapOf("BP_JVM_VERSION" to "22")
+    )
 }
