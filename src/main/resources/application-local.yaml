@@ -3,3 +3,6 @@ spring:
     mongodb:
       auto-index-creation: true
       uri: mongodb://${DB_USERNAME}:${DB_PASSWORD}@localhost:27017/tracking?authSource=admin
+
+server:
+  port: ${SERVER_PORT}
