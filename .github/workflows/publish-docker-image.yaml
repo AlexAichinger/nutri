@@ -34,7 +34,7 @@ jobs:
         run: ./gradlew bootBuildImage
 
       - name: docker images ls
-        run: docker images ls
+        run: docker image ls
 
       - name: Tag docker image
         run: docker tag ${{ env.IMAGE_NAME }} ${{ steps.meta.outputs.tags }}
