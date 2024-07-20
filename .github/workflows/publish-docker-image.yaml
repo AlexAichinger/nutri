@@ -40,4 +40,4 @@ jobs:
           password: ${{ secrets.DOCKER_KEY }}
 
       - name: Build and Push
-        run: docker buildx build --platform linux/arm64,linux/amd64 -t "${{ secrets.DOCKER_REGISTRY_URL }}/${{ secrets.DOCKER_USERNAME }}/nutri:latest" -t "${{ secrets.DOCKER_REGISTRY_URL }}/${{ secrets.DOCKER_USERNAME }}/nutri:${{ github.ref_name }}" --push .
+        run: docker buildx build --platform linux/arm64 -t "docker.io/alexaich/nutri:latest" -t "docker.io/alexaich/nutri:${{ github.ref_name }}" --push .
