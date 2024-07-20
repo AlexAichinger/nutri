@@ -80,5 +80,5 @@ tasks.named<Jar>("jar") {
 }
 
 tasks.getByName<BootBuildImage>("bootBuildImage") {
-    imageName = "alexaich/${project.name}:$version"
+    imageName = "alexaich/${project.name}"
 }
