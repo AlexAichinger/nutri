@@ -1,13 +1,21 @@
+import org.springframework.boot.gradle.tasks.bundling.BootBuildImage
+
 plugins {
     id("org.springframework.boot") version "3.3.2"
     id("io.spring.dependency-management") version "1.1.6"
+
     id("org.jlleitschuh.gradle.ktlint") version "12.1.1"
+    id("com.palantir.git-version") version "3.1.0"
+
     kotlin("jvm") version "2.0.0"
     kotlin("plugin.spring") version "2.0.0"
 }
 
+val gitVersion: groovy.lang.Closure<String> by extra
+version = gitVersion()
+
 group = "com.alexaichinger"
-version = "0.0.1-SNAPSHOT"
+version = "$version"
 
 java {
     toolchain {
@@ -69,4 +77,13 @@ tasks.withType<Test> {
 
 tasks.named<Jar>("jar") {
     enabled = false
+}
+
+tasks.getByName<BootBuildImage>("bootBuildImage") {
+    imageName = "alexaich/${project.name}:$version"
+    publish = true
+    docker {
+        publishRegistry {
+        }
+    }
 }

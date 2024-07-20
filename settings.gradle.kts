@@ -1,1 +1,1 @@
-rootProject.name = "nutri-tracking"
+rootProject.name = "nutri"

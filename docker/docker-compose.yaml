@@ -1,7 +1,7 @@
 services:
   nutri:
     container_name: nutri
-    image: ghcr.io/alexaichinger/nutri:v${APPLICATION_VERSION}
+    image: alexaich/nutri:${APPLICATION_VERSION}
     env_file:
       - .env
     ports:

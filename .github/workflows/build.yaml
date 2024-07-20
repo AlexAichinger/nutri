@@ -48,7 +48,7 @@ jobs:
         path: app.jar
 
   dependency-submission:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     permissions:
       contents: write
 
