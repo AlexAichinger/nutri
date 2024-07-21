@@ -13,7 +13,7 @@ data class ManualMealEntryDto(
     val user: String,
     val mealType: MealType,
     val eatenInGrams: BigDecimal,
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ssZ")
     val loggingDate: LocalDateTime,
     val manualFoodInformation: ManualFoodInformationDto,
 )

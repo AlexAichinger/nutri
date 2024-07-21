@@ -153,11 +153,11 @@ data class OffNutrimentsV3Dto(
     @JsonAlias("fat_unit")
     var fatUnit: String,
     @JsonAlias("fiber")
-    var fiber: BigDecimal,
+    var fiber: BigDecimal? = BigDecimal.ZERO,
     @JsonAlias("fiber_100g")
-    var fiber100g: BigDecimal,
+    var fiber100g: BigDecimal? = BigDecimal.ZERO,
     @JsonAlias("fiber_unit")
-    var fiberUnit: String,
+    var fiberUnit: String? = "g",
     @JsonAlias("fruits-vegetables-legumes-estimate-from-ingredients_100g")
     var fruitsVegetablesLegumesEstimateFromIngredients100g: BigDecimal,
     @JsonAlias("fruits-vegetables-legumes-estimate-from-ingredients_serving")
