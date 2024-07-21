@@ -9,7 +9,7 @@ data class AutomaticTrackingMeal(
     val user: String,
     val mealType: MealType,
     val eatenInGrams: BigDecimal,
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ssZ")
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ssz")
     val loggingDate: LocalDateTime,
     val barcode: String,
 )
