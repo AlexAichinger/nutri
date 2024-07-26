@@ -40,8 +40,6 @@ class MacrosService(
         var proteinsUnit = "g"
         var salt = BigDecimal.ZERO
         var saltUnit = "g"
-        var unSaturatedFat = BigDecimal.ZERO
-        var unSaturatedFatUnit = "g"
         var saturatedFat = BigDecimal.ZERO
         var saturatedFatUnit = "g"
         var sodium = BigDecimal.ZERO
@@ -88,60 +86,60 @@ class MacrosService(
 
         entries.forEach {
             val macros = it.foodInformation.macroNutrients
-            carbohydrates = carbohydrates.plus(macros.carbohydrates)
-            carbohydratesUnit = macros.carbohydratesUnit
-            energyKcal = energyKcal.plus(macros.energyKcal)
-            fat = fat.plus(macros.fat)
-            fatUnit = macros.fatUnit
-            fiber = fiber.plus(macros.fiber)
-            fiberUnit = macros.fiberUnit
-            proteins = proteins.plus(macros.proteins)
-            proteinsUnit = macros.proteinsUnit
-            salt = salt.plus(macros.salt)
-            saltUnit = macros.saltUnit
-            saturatedFat = saturatedFat.plus(macros.saturatedFat)
-            saturatedFatUnit = macros.saturatedFatUnit
-            sodium = sodium.plus(macros.sodium)
-            sodiumUnit = macros.sodiumUnit
-            sugars = sugars.plus(macros.sugars)
-            sugarsUnit = macros.sugarsUnit
+            macros.carbohydrates?.let { carbohydrates = carbohydrates.plus(macros.carbohydrates) }
+            macros.carbohydratesUnit?.let { carbohydratesUnit = macros.carbohydratesUnit }
+            macros.energyKcal?.let { energyKcal = energyKcal.plus(macros.energyKcal) }
+            macros.fat?.let { fat = fat.plus(macros.fat) }
+            macros.fatUnit?.let { fatUnit = macros.fatUnit }
+            macros.fiber?.let { fiber = fiber.plus(macros.fiber) }
+            macros.fiberUnit?.let { fiberUnit = macros.fiberUnit }
+            macros.proteins?.let { proteins = proteins.plus(macros.proteins) }
+            macros.proteinsUnit?.let { proteinsUnit = macros.proteinsUnit }
+            macros.salt?.let { salt = salt.plus(macros.salt) }
+            macros.saltUnit?.let { saltUnit = macros.saltUnit }
+            macros.saturatedFat?.let { saturatedFat = saturatedFat.plus(macros.saturatedFat) }
+            macros.saturatedFatUnit?.let { saturatedFatUnit = macros.saturatedFatUnit }
+            macros.sodium?.let { sodium = sodium.plus(macros.sodium) }
+            macros.sodiumUnit?.let { sodiumUnit = macros.sodiumUnit }
+            macros.sugars?.let { sugars = sugars.plus(macros.sugars) }
+            macros.sugarsUnit?.let { sugarsUnit = macros.sugarsUnit }
 
             val micros = it.foodInformation.microNutrients
-            alcohol = alcohol.plus(micros.alcohol)
-            betaCarotene = betaCarotene.plus(micros.betaCarotene)
-            calcium = calcium.plus(micros.calcium)
-            cholesterol = cholesterol.plus(micros.cholesterol)
-            copper = copper.plus(micros.copper)
-            fructose = fructose.plus(micros.fructose)
-            galactose = galactose.plus(micros.galactose)
-            glucose = glucose.plus(micros.glucose)
-            iodine = iodine.plus(micros.iodine)
-            iron = iron.plus(micros.iron)
-            lactose = lactose.plus(micros.lactose)
-            magnesium = magnesium.plus(micros.magnesium)
-            maltose = maltose.plus(micros.maltose)
-            manganese = manganese.plus(micros.manganese)
-            pantothenicAcid = pantothenicAcid.plus(micros.pantothenicAcid)
-            phosphorus = phosphorus.plus(micros.phosphorus)
-            phylloquinone = phylloquinone.plus(micros.phylloquinone)
-            polyols = polyols.plus(micros.polyols)
-            potassium = potassium.plus(micros.potassium)
-            selenium = selenium.plus(micros.selenium)
-            starch = starch.plus(micros.starch)
-            sucrose = sucrose.plus(micros.sucrose)
-            vitaminA = vitaminA.plus(micros.vitaminA)
-            vitaminB12 = vitaminB12.plus(micros.vitaminB12)
-            vitaminB = vitaminB.plus(micros.vitaminB)
-            vitaminB2 = vitaminB2.plus(micros.vitaminB2)
-            vitaminB6 = vitaminB6.plus(micros.vitaminB6)
-            vitaminB9 = vitaminB9.plus(micros.vitaminB9)
-            vitaminC = vitaminC.plus(micros.vitaminC)
-            vitaminD = vitaminD.plus(micros.vitaminD)
-            vitaminE = vitaminE.plus(micros.vitaminE)
-            vitaminPp = vitaminPp.plus(micros.vitaminPp)
-            water = water.plus(micros.water)
-            zinc = zinc.plus(micros.zinc)
-            caffeine += micros.caffeine
+            micros.alcohol?.let { alcohol = alcohol.plus(micros.alcohol) }
+            micros.betaCarotene?.let { betaCarotene = betaCarotene.plus(micros.betaCarotene) }
+            micros.calcium?.let { calcium = calcium.plus(micros.calcium) }
+            micros.cholesterol?.let { cholesterol = cholesterol.plus(micros.cholesterol) }
+            micros.copper?.let { copper = copper.plus(micros.copper) }
+            micros.fructose?.let { fructose = fructose.plus(micros.fructose) }
+            micros.galactose?.let { galactose = galactose.plus(micros.galactose) }
+            micros.glucose?.let { glucose = glucose.plus(micros.glucose) }
+            micros.iodine?.let { iodine = iodine.plus(micros.iodine) }
+            micros.iron?.let { iron = iron.plus(micros.iron) }
+            micros.lactose?.let { lactose = lactose.plus(micros.lactose) }
+            micros.magnesium?.let { magnesium = magnesium.plus(micros.magnesium) }
+            micros.maltose?.let { maltose = maltose.plus(micros.maltose) }
+            micros.manganese?.let { manganese = manganese.plus(micros.manganese) }
+            micros.pantothenicAcid?.let { pantothenicAcid = pantothenicAcid.plus(micros.pantothenicAcid) }
+            micros.phosphorus?.let { phosphorus = phosphorus.plus(micros.phosphorus) }
+            micros.phylloquinone?.let { phylloquinone = phylloquinone.plus(micros.phylloquinone) }
+            micros.polyols?.let { polyols = polyols.plus(micros.polyols) }
+            micros.potassium?.let { potassium = potassium.plus(micros.potassium) }
+            micros.selenium?.let { selenium = selenium.plus(micros.selenium) }
+            micros.starch?.let { starch = starch.plus(micros.starch) }
+            micros.sucrose?.let { sucrose = sucrose.plus(micros.sucrose) }
+            micros.vitaminA?.let { vitaminA = vitaminA.plus(micros.vitaminA) }
+            micros.vitaminB12?.let { vitaminB12 = vitaminB12.plus(micros.vitaminB12) }
+            micros.vitaminB?.let { vitaminB = vitaminB.plus(micros.vitaminB) }
+            micros.vitaminB2?.let { vitaminB2 = vitaminB2.plus(micros.vitaminB2) }
+            micros.vitaminB6?.let { vitaminB6 = vitaminB6.plus(micros.vitaminB6) }
+            micros.vitaminB9?.let { vitaminB9 = vitaminB9.plus(micros.vitaminB9) }
+            micros.vitaminC?.let { vitaminC = vitaminC.plus(micros.vitaminC) }
+            micros.vitaminD?.let { vitaminD = vitaminD.plus(micros.vitaminD) }
+            micros.vitaminE?.let { vitaminE = vitaminE.plus(micros.vitaminE) }
+            micros.vitaminPp?.let { vitaminPp = vitaminPp.plus(micros.vitaminPp) }
+            micros.water?.let { water = water.plus(micros.water) }
+            micros.zinc?.let { zinc = zinc.plus(micros.zinc) }
+            micros.caffeine?.let { caffeine += micros.caffeine }
         }
 
         return NutrientsDto(
@@ -158,8 +156,6 @@ class MacrosService(
                     proteinsUnit,
                     salt,
                     saltUnit,
-                    unSaturatedFat,
-                    unSaturatedFatUnit,
                     saturatedFat,
                     saturatedFatUnit,
                     sodium,

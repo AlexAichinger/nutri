@@ -7,36 +7,36 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 data class OffEcoScoreDataV3Dto(
     var adjustments: OffAdjustmentsV3Dto,
 //    var threatenedSpecies: ThreatenedSpecies,
-    var agribalyse: OffAgribalyseV3Dto,
+    var agribalyse: OffAgribalyseV3Dto? = null,
     var grade: String? = null,
     var grades: Map<String, String>? = emptyMap(),
     var score: Int? = null,
     var scores: Map<String, String>? = emptyMap(),
-    var status: String,
+    var status: String? = null,
 )
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class OffAgribalyseV3Dto(
     @JsonAlias("co2_total")
-    val co2Total: Double,
+    val co2Total: Double? = null,
     @JsonAlias("co2_agriculture")
-    val co2Agriculture: Double,
+    val co2Agriculture: Double? = null,
     @JsonAlias("co2_consumption")
-    val co2Consumption: Double,
+    val co2Consumption: Double? = null,
     @JsonAlias("co2_distribution")
-    val co2Distribution: Double,
+    val co2Distribution: Double? = null,
     @JsonAlias("co2_packaging")
-    val co2Packaging: Double,
+    val co2Packaging: Double? = null,
     @JsonAlias("co2_transportation")
-    val co2Transportation: Double,
+    val co2Transportation: Double? = null,
     @JsonAlias("co2_processing")
-    val co2Processing: Double,
-    val score: Int,
+    val co2Processing: Double? = null,
+    val score: Int? = null,
 )
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class OffPackagingV3Dto(
-    val score: Int,
+    val score: Int? = null,
 )
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -48,6 +48,6 @@ data class OffAdjustmentsV3Dto(
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class OffOriginsOfIngredientsV3Dto(
-    var epiScore: Int,
-    var warning: String,
+    var epiScore: Int? = null,
+    var warning: String? = null,
 )

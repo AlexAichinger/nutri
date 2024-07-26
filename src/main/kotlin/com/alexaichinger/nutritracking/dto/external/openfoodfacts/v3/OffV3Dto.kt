@@ -5,16 +5,16 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class OffV3Dto(
-    var code: String,
-    var errors: List<String>,
+    var code: String? = null,
+    var errors: List<String> = listOf(),
     var product: OffProductV3Dto,
     var result: OffResultV3Dto,
-    var status: String,
+    var status: String? = null,
 )
 
 data class OffResultV3Dto(
-    var id: String,
+    var id: String? = null,
     @JsonAlias("lc_name")
-    var lcName: String,
-    var name: String,
+    var lcName: String? = null,
+    var name: String? = null,
 )

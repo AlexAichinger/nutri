@@ -21,7 +21,7 @@ data class ManualMealEntryDto(
 data class ManualFoodInformationDto(
     var name: String,
     var macroNutrients: MacroNutrientsDto,
-    var microNutrients: MicroNutrientsDto? = createEmptyMicros(),
+    var microNutrients: MicroNutrientsDto? = MicroNutrientsDto(),
 )
 
 fun ManualMealEntryDto.toEntity(eatenInGrams: BigDecimal): MealEntry {
@@ -39,7 +39,7 @@ fun ManualFoodInformationDto.toEntity(eatenInGrams: BigDecimal): FoodInformation
         brand = null,
         barcode = null,
         macroNutrients = macroNutrients.toEntity(eatenInGrams),
-        microNutrients = createEmptyMicros().toEntity(),
+        microNutrients = MicroNutrients(),
     )
 }
 
