@@ -1,6 +1,6 @@
 package com.alexaichinger.nutritracking.dto.internal
 
-import com.alexaichinger.nutritracking.model.MealType
+import com.alexaichinger.nutritracking.model.nutrition.MealType
 import com.fasterxml.jackson.annotation.JsonFormat
 import java.math.BigDecimal
 import java.time.LocalDateTime

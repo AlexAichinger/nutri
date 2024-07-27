@@ -1,4 +1,4 @@
-package com.alexaichinger.nutritracking.model
+package com.alexaichinger.nutritracking.model.nutrition
 
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.index.CompoundIndex

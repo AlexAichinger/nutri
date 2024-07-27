@@ -1,4 +1,4 @@
-package com.alexaichinger.nutritracking.model
+package com.alexaichinger.nutritracking.model.nutrition
 
 enum class MealType {
     BREAKFAST,

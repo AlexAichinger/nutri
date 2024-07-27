@@ -1,15 +1,15 @@
-package com.alexaichinger.nutritracking.service
+package com.alexaichinger.nutritracking.service.nutrition
 
 import com.alexaichinger.nutritracking.dto.external.client.ClientProductInfo
 import com.alexaichinger.nutritracking.dto.internal.AutomaticTrackingMeal
 import com.alexaichinger.nutritracking.dto.internal.ManualMealEntryDto
 import com.alexaichinger.nutritracking.dto.internal.toEntity
 import com.alexaichinger.nutritracking.exceptions.ProductNotFoundException
-import com.alexaichinger.nutritracking.model.FoodInformation
-import com.alexaichinger.nutritracking.model.MacroNutrients
-import com.alexaichinger.nutritracking.model.MealEntry
-import com.alexaichinger.nutritracking.model.MealType
-import com.alexaichinger.nutritracking.model.MicroNutrients
+import com.alexaichinger.nutritracking.model.nutrition.FoodInformation
+import com.alexaichinger.nutritracking.model.nutrition.MacroNutrients
+import com.alexaichinger.nutritracking.model.nutrition.MealEntry
+import com.alexaichinger.nutritracking.model.nutrition.MealType
+import com.alexaichinger.nutritracking.model.nutrition.MicroNutrients
 import com.alexaichinger.nutritracking.repository.MealEntryRepository
 import com.alexaichinger.nutritracking.service.helpers.atEndOfDay
 import com.alexaichinger.nutritracking.service.helpers.atStartOfDay

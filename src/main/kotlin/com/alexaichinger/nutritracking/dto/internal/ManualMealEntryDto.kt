@@ -1,10 +1,10 @@
 package com.alexaichinger.nutritracking.dto.internal
 
-import com.alexaichinger.nutritracking.model.FoodInformation
-import com.alexaichinger.nutritracking.model.MacroNutrients
-import com.alexaichinger.nutritracking.model.MealEntry
-import com.alexaichinger.nutritracking.model.MealType
-import com.alexaichinger.nutritracking.model.MicroNutrients
+import com.alexaichinger.nutritracking.model.nutrition.FoodInformation
+import com.alexaichinger.nutritracking.model.nutrition.MacroNutrients
+import com.alexaichinger.nutritracking.model.nutrition.MealEntry
+import com.alexaichinger.nutritracking.model.nutrition.MealType
+import com.alexaichinger.nutritracking.model.nutrition.MicroNutrients
 import com.fasterxml.jackson.annotation.JsonFormat
 import java.math.BigDecimal
 import java.time.LocalDateTime

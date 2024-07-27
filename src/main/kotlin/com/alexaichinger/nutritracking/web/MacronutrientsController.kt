@@ -1,7 +1,7 @@
 package com.alexaichinger.nutritracking.web
 
 import com.alexaichinger.nutritracking.dto.internal.NutrientsDto
-import com.alexaichinger.nutritracking.service.MacrosService
+import com.alexaichinger.nutritracking.service.nutrition.MacrosService
 import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable

@@ -2,8 +2,8 @@ package com.alexaichinger.nutritracking.web
 
 import com.alexaichinger.nutritracking.dto.internal.AutomaticTrackingMeal
 import com.alexaichinger.nutritracking.dto.internal.ManualMealEntryDto
-import com.alexaichinger.nutritracking.model.MealEntry
-import com.alexaichinger.nutritracking.service.MealEntryService
+import com.alexaichinger.nutritracking.model.nutrition.MealEntry
+import com.alexaichinger.nutritracking.service.nutrition.MealEntryService
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.format.annotation.DateTimeFormat

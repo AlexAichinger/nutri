@@ -1,9 +1,9 @@
-package com.alexaichinger.nutritracking.service
+package com.alexaichinger.nutritracking.service.nutrition
 
 import com.alexaichinger.nutritracking.dto.internal.MacroNutrientsDto
 import com.alexaichinger.nutritracking.dto.internal.MicroNutrientsDto
 import com.alexaichinger.nutritracking.dto.internal.NutrientsDto
-import com.alexaichinger.nutritracking.model.MealEntry
+import com.alexaichinger.nutritracking.model.nutrition.MealEntry
 import com.alexaichinger.nutritracking.repository.MealEntryRepository
 import com.alexaichinger.nutritracking.service.helpers.atEndOfDay
 import com.alexaichinger.nutritracking.service.helpers.atStartOfDay
