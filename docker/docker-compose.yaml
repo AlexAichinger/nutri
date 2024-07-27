@@ -20,3 +20,12 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: ${DB_PASSWORD}
     volumes:
       - ${DB_DATA_LOCATION}:/data/db/
+  ui:
+    image: ghcr.io/open-webui/open-webui:ollama
+    restart: always
+    ports:
+      - 3011:8080
+    volumes:
+      - ./open-webui:/app/backend/data
+    environment:
+      # - "ENABLE_SIGNUP=false"

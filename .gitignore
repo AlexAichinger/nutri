@@ -44,3 +44,4 @@ node_modules
 db_data/
 .idea/
 /.env
+open-webui/
