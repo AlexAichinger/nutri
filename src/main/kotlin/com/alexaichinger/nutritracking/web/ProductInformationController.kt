@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/product")
+@RequestMapping("/products")
 class ProductInformationController(
     private val foodFactsService: OpenFoodFactsService,
 ) {
