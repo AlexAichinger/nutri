@@ -7,7 +7,7 @@ plugins {
     id("org.jlleitschuh.gradle.ktlint") version "12.1.1"
     id("com.palantir.git-version") version "3.1.0"
 
-    kotlin("jvm") version "2.0.0"
+    kotlin("jvm") version "2.0.21"
     kotlin("plugin.spring") version "2.0.0"
 }
 
